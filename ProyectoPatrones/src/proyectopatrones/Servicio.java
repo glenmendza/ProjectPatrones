@@ -23,9 +23,9 @@ public class Servicio {
     
     private String username = "admin";
     private String password = "adminadmin";
-    private String connectionString = "jdbc:mysql:/patronesdb.ccakzl9duazr.us-east-1.rds.amazonaws.com:3306/patronesdb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
+    private String connectionString = "jdbc:mysql://patronesdb.ccakzl9duazr.us-east-1.rds.amazonaws.com:3306/PatronesDB?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
     
-    public void conectar() {
+    public void connect() {
 
         try {
             //Paso 1
