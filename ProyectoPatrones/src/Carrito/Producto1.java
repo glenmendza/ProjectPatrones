@@ -21,6 +21,6 @@ public class Producto1 extends Decorador{
 
     public int getCantidad(){
         return 1 + carrito.getCantidad();
-    }
+     }
     
 }
