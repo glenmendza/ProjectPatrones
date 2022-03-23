@@ -4,8 +4,6 @@
  */
 package proyectopatrones;
 
-import java.util.List;
-
 
 public class Tester {
 
@@ -27,16 +25,6 @@ public class Tester {
        cliente.listaPedidos();
        cliente.listaProductos();
        cliente.realizarRegistro();
-       
-               ServicioUsuario servicioUsuario = new ServicioUsuario();
-        
-         List<UsuarioTO> listado = servicioUsuario.demePersonas();
-         for (UsuarioTO usuarioTO : listado) {
-             System.out.println(usuarioTO.getUserName()+ " " + usuarioTO.getUserLastName());
-         }
-         System.out.println("====================================");
-         UsuarioTO usuarioTORetorno = servicioUsuario.demePersona(1);
-         System.out.println("La persona es : "+ usuarioTORetorno.getUserName());
     }
     
 }
