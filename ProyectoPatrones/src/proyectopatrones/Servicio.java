@@ -9,79 +9,84 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author bernal
- */
-public class Servicio {
 
-    protected Connection connection = null;
-    
-//    private String host = "localhost";
-//    private String puerto = "3306";
-//    private String sid = "cciDemos";
-    
-    private String username = "admin";
-    private String password = "adminadmin";
-    private String connectionString = "jdbc:mysql:/patronesdb.ccakzl9duazr.us-east-1.rds.amazonaws.com:3306/patronesdb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
-    
-    public void conectar() {
+public abstract class Servicio {
 
+    private  Connection conexion = null;
+    private  String host = "jdbc:mysql:/patronesdb.ccakzl9duazr.us-east-1.rds.amazonaws.com:3306/patronesdb?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
+    private  String puerto = "3306";
+    private  String sid = "PatronesDB";
+    private  String usuario = "admin";
+    private  String clave = "adminadmin";
+
+
+    protected void conectar() {
         try {
-            //Paso 1
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            //Paso 2
-            connection = DriverManager.getConnection(connectionString, username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            
+            conexion = DriverManager.getConnection("jdbc:mysql://" + host + ":" + puerto + "/" + sid + "?serverTimezone=UTC" ,usuario, clave);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-
-    public void closeStatement(Statement statement) {
+    protected Connection getConexion() {
         try {
-            if (statement != null && !statement.isClosed()) {
-                statement.close();
-                statement = null;
+            if (this.conexion != null && this.conexion.isClosed()) {
+                return this.conexion;
+            } else {
+                this.conectar();
+
             }
-        } catch(SQLException e) {
+        } catch (Exception e) {
+
+        }
+        return this.conexion;
+    }
+
+    protected void cerrarStatement(Statement stmt) {
+        try {
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+                stmt = null;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void closePreparedStatement(PreparedStatement preparedStatement) {
+protected void cerrarPreparedStatement(PreparedStatement stmt) {
         try {
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-                preparedStatement = null;
-            }
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-        public void closeResultSet(ResultSet resultSet) {
-        try {
-            if (resultSet != null && !resultSet.isClosed()) {
-                resultSet.close();
-                resultSet = null;
+            if (stmt != null && !stmt.isClosed()) {
+                stmt.close();
+                stmt = null;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void disconnect() {
+    protected void cerrarResultSet(ResultSet rs) {
         try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-                connection = null;
-            } 
+            if (rs != null && !rs.isClosed()) {
+                rs.close();
+                rs = null;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    protected void desconectar() {
+        try {
+            if (conexion != null && !conexion.isClosed()) {
+                conexion.close();
+                conexion = null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+    
+
+
 
