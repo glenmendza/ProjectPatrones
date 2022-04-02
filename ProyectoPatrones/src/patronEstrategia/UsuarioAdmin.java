@@ -10,9 +10,9 @@ package patronEstrategia;
  */
 public class UsuarioAdmin extends Usuario {
     public UsuarioAdmin() {
-        comportamientoCarrito = new NoMostrarCarrito();
-        comportamientoPedidos = new MostrarPedidos();
-        comportamientoProductos = new ModificarProductos();
+        comportamientoCarrito = new CarritoNoMostrar();
+        comportamientoPedidos = new PedidosMostrar();
+        comportamientoProductos = new ProductosModificar();
         comportamientoRegistro = new RegistrarAdmin();
     }
 

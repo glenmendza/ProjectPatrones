@@ -4,11 +4,13 @@
  */
 package patronEstrategia;
 
+import java.util.List;
+
 /**
  *
  * @author haziellopez
  */
 public interface ComportamientoProductos {
-    public void Productos();
+    public abstract List<Producto> Productos();
     
 }

@@ -8,9 +8,9 @@ package patronEstrategia;
  *
  * @author haziellopez
  */
-public class NoMostrarCarrito implements ComportamientoCarrito{
-    public void Carrito()
-    {
-        System.out.println("No se muestra el carrito");
-    }
+public class CarritoMostrar implements ComportamientoCarrito{
+   public void Carrito()
+   {
+       System.out.println("Se muestra el carrito");
+   }
 }

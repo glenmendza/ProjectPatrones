@@ -2,15 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package patronEstrategia;
+package patronFabrica;
 
 /**
  *
  * @author haziellopez
  */
-public class ModificarProductos implements ComportamientoProductos{
-    public void Productos()
+public class MenFactory implements Distribuidora{
+   
+    public Tops CrearTops()
     {
-        System.out.println("Se ve la lista de productos y se puede modificar");
+        return new LongSleeve();
     }
+    
+    public Sneakers CrearSneakers();
+    {
+        return new 
+    }    
+    
 }

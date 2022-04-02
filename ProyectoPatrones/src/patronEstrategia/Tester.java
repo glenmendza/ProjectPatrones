@@ -41,6 +41,14 @@ public class Tester {
         System.out.println("====================================");
         UsuarioTO usuarioTORetorno = servicioUsuario.demePersona(2);
         System.out.println("La persona es : " + usuarioTORetorno.getUserName());
+        
+        ProductosVer verProductos = new ProductosVer();
+        
+        List<Producto> listadoP = verProductos.Productos();
+        for (Producto producto : listadoP) {
+            System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
+        }
+        
     }
 
 }

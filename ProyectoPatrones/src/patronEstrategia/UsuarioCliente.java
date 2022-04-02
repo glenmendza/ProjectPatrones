@@ -11,9 +11,9 @@ package patronEstrategia;
 public class UsuarioCliente extends Usuario {
 
     public UsuarioCliente() {
-        comportamientoCarrito = new MostrarCarrito();
-        comportamientoPedidos = new NoMostrarPedidos();
-        comportamientoProductos = new VerProductos();
+        comportamientoCarrito = new CarritoMostrar();
+        comportamientoPedidos = new PedidosNoMostrar();
+        comportamientoProductos = new ProductosVer();
         comportamientoRegistro = new RegistrarCliente();
     }
 

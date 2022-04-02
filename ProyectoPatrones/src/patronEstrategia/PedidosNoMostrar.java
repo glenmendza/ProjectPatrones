@@ -4,10 +4,13 @@
  */
 package patronEstrategia;
 
-
-public class MostrarPedidos implements ComportamientoPedidos{
+/**
+ *
+ * @author haziellopez
+ */
+public class PedidosNoMostrar implements ComportamientoPedidos{
     public void Pedidos()
     {
-        System.out.println("Se muestran los pedidos hechos por los clientes");
+        System.out.println("No se muestran los pedidos hechos por los clientes");
     }
 }
