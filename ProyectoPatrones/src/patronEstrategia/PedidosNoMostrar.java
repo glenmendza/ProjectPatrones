@@ -4,12 +4,14 @@
  */
 package patronEstrategia;
 
+import java.util.List;
+
 /**
  *
  * @author haziellopez
  */
 public class PedidosNoMostrar implements ComportamientoPedidos{
-    public void Pedidos()
+    public List<Pedido> Pedidos()
     {
         System.out.println("No se muestran los pedidos hechos por los clientes");
     }

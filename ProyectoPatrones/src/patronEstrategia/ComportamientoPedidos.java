@@ -4,10 +4,12 @@
  */
 package patronEstrategia;
 
+import java.util.List;
+
 /**
  *
  * @author haziellopez
  */
 public interface ComportamientoPedidos {
-    public void Pedidos();
+   public List<Pedido> Pedidos();
 }

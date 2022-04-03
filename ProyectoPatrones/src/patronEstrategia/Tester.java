@@ -27,8 +27,8 @@ public class Tester {
         cliente.display();
 
         cliente.usarCarrito();
-        cliente.listaPedidos();
-        cliente.listaProductos();
+        //cliente.listaPedidos();
+        //cliente.listaProductos();
         cliente.realizarRegistro();
         
         //RegistrarAdmin regadmin = new RegistrarAdmin();
@@ -71,9 +71,16 @@ public class Tester {
         modificarProductos.agregarProducto(producto4);
         
         for (Producto producto : listadoP) {
-            System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
-                   
+            System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());                   
         }
+        
+        //Mostrar la lista de pedidos
+        PedidosMostrar mostrarPedidos = new PedidosMostrar();
+          List<Pedido> listadoPe = mostrarPedidos.Pedidos();
+         for (Pedido pedido : listadoPe) {
+            System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario()+" "+pedido.getIdProducto());                   
+        }
+        
         
      
         
