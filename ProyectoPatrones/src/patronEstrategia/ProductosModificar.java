@@ -4,6 +4,7 @@
  */
 package patronEstrategia;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -44,5 +45,45 @@ public class ProductosModificar extends Servicio implements ComportamientoProduc
         }
         return listaRetorno;
     }
-   
+    
+    public void agregarProducto(Producto producto) {//agrega un nuevo producto a la bd       
+        PreparedStatement st = null;
+        try {
+            this.conectar();
+
+            st = this.getConexion().prepareStatement("INSERT IGNORE INTO Productos (idProducto,nombre,descripcion,precio) VALUES (?,?,?,?)");
+            st.setInt(1,producto.getIdProducto());
+            st.setString(2, producto.getNombre());
+            st.setString(3, producto.getDescripcion());
+            st.setDouble(4, producto.getPrecio());
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            cerrarPreparedStatement(st);
+            desconectar();
+        }
+
+    }
+    
+    public void eliminarProducto(int id){
+          PreparedStatement st = null;
+        try {
+            this.conectar();
+            st = this.getConexion().prepareStatement("DELETE FROM Productos WHERE idProducto = ?");
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarPreparedStatement(st);
+            desconectar();
+        }
+        
+       
+    }
+    
 }

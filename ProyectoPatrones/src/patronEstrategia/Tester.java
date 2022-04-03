@@ -12,6 +12,8 @@ public class Tester {
 
     public static void main(String[] args) {
         Usuario admin = new UsuarioAdmin();
+        ProductosVer verProductos = new ProductosVer();
+        ProductosModificar modificarProductos = new ProductosModificar();
 
         admin.display();
 
@@ -29,7 +31,14 @@ public class Tester {
         cliente.listaProductos();
         cliente.realizarRegistro();
         
-        RegistrarAdmin regadmin = new RegistrarAdmin();
+        //RegistrarAdmin regadmin = new RegistrarAdmin();
+        RegistroTO regto = new RegistroTO();
+        //regadmin.insert(regto);
+        
+        RegistrarCliente regcliente = new RegistrarCliente();
+        
+        //registro de un nuevo cliente
+        //regcliente.insert(regto);
         
 
         ServicioUsuario servicioUsuario = new ServicioUsuario();
@@ -42,12 +51,31 @@ public class Tester {
         UsuarioTO usuarioTORetorno = servicioUsuario.demePersona(2);
         System.out.println("La persona es : " + usuarioTORetorno.getUserName());
         
-        ProductosVer verProductos = new ProductosVer();
-        
+      
+     
+       //Funciones Administrativas en la lista de productos
+        modificarProductos.eliminarProducto(1);
+       
+           
         List<Producto> listadoP = verProductos.Productos();
         for (Producto producto : listadoP) {
             System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
+                   
         }
+        Producto producto4 = new Producto();
+        producto4.setIdProducto(4);
+        producto4.setNombre("Top Mujer rojo");
+        producto4.setDescripcion("Top para mujer marca adidas");
+        producto4.setPrecio(39.99);
+        
+        modificarProductos.agregarProducto(producto4);
+        
+        for (Producto producto : listadoP) {
+            System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
+                   
+        }
+        
+     
         
     }
 

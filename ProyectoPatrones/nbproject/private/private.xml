@@ -12,25 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ProductosModificar.java</file>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioTO.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Servicio.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Producto.java</file>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistrarAdmin.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ComportamientoProductos.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioAdmin.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/MostrarCarrito.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/NoMostrarPedidos.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ModificarProductos.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ComportamientoPedidos.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ComportamientoRegistro.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ComportamientoCarrito.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/VerProductos.java</file>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistrarCliente.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Usuario.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/MostrarPedidos.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/NoMostrarCarrito.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioCliente.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ComportamientoProductos.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistroTO.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Distribuidora.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ProductosVer.java</file>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ServicioUsuario.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/TopsFactory.java</file>
         </group>
     </open-files>
 </project-private>
