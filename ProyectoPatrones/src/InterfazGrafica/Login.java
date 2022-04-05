@@ -11,6 +11,7 @@ public class Login extends Servicio implements Serializable {
     public String usuario;
     public String contrasenna;
     public int tempIDuser;
+    boolean bandera = false;
 
     public int getTempIDuser() {
         return tempIDuser;
@@ -24,6 +25,7 @@ public class Login extends Servicio implements Serializable {
 
         Statement stmt = null;
         ResultSet rs = null;
+        
         try {
             stmt = super.getConexion().createStatement();
             String sql = "SELECT * FROM User";
@@ -36,10 +38,24 @@ public class Login extends Servicio implements Serializable {
 
                 if (usuario.equals(tempID) && contrasenna.equals(tempPassword) && tempTipo.equals("1")) {
                     JOptionPane.showMessageDialog(null, "Se ingreso al sistema como Usuario1 (Admin)");
+                    //bandera=true;
+                    break;
+                    
+                }
+                if (usuario.equals(tempID) && contrasenna.equals(tempPassword) && tempTipo.equals("2")){
+                        
+                JOptionPane.showMessageDialog(null, "Se ingreso al sistema como Usuario2 (Cliente)");
+                //bandera=true;
+                break;
+                
+                
+                }else{
+                    
+                
+                JOptionPane.showMessageDialog(null, "Sus datos no son validos. Registrese o intentelo de nuevo");
                     break;
                 }
-                JOptionPane.showMessageDialog(null, "Se ingreso al sistema como Usuario2 (Cliente)");
-            }
+                }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +68,7 @@ public class Login extends Servicio implements Serializable {
 
     public void digitarUsuario() {
 
-        JOptionPane.showMessageDialog(null, "Hello, Welcome to Centroamerica.");
+        JOptionPane.showMessageDialog(null, "Bienvenido a la tienda en linea ");
         usuario = JOptionPane.showInputDialog(null, "Usuario");
 
     }
@@ -63,11 +79,21 @@ public class Login extends Servicio implements Serializable {
     }
 
     public void validacionDatos() {
+      // do {
+           
+       
+         
         digitarUsuario();
         digitarContrasena();
-
+       
+      
+        
         try {
             ingresar();
+              //while(bandera =! true);
+        
+        
+      
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR EN INGRESAR");
             e.printStackTrace();

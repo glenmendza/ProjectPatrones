@@ -6,6 +6,9 @@ package patronEstrategia;
 
 import java.util.List;
 import patronEstrategia.RegistrarAdmin;
+import javax.swing.*;
+import patronObservador.*;
+import InterfazGrafica.*;
         
         
 public class Tester {
@@ -14,7 +17,7 @@ public class Tester {
         Usuario admin = new UsuarioAdmin();
         ProductosVer verProductos = new ProductosVer();
         ProductosModificar modificarProductos = new ProductosModificar();
-
+/*
         admin.display();
 
         admin.usarCarrito();
@@ -30,8 +33,10 @@ public class Tester {
         //cliente.listaPedidos();
         //cliente.listaProductos();
         cliente.realizarRegistro();
-        
+ */      
         //RegistrarAdmin regadmin = new RegistrarAdmin();
+        
+       
         RegistroTO regto = new RegistroTO();
         //regadmin.insert(regto);
         
@@ -39,10 +44,13 @@ public class Tester {
         
         //registro de un nuevo cliente
         //regcliente.insert(regto);
-        
+        Login log = new Login();
+        log.validacionDatos();
 
         ServicioUsuario servicioUsuario = new ServicioUsuario();
 
+        
+        
         List<UsuarioTO> listado = servicioUsuario.demePersonas();
         for (UsuarioTO usuarioTO : listado) {
             System.out.println(usuarioTO.getUserName() + " " + usuarioTO.getUserEmail());
@@ -62,6 +70,8 @@ public class Tester {
             System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
                    
         }
+        
+        
         Producto producto4 = new Producto();
         producto4.setIdProducto(4);
         producto4.setNombre("Top Mujer rojo");
@@ -81,8 +91,21 @@ public class Tester {
             System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario()+" "+pedido.getIdProducto());                   
         }
         
+         MensajeAdmin ma = new MensajeAdmin();
+         MensajeUsuario mu = new MensajeUsuario();     
+         PublicadorMensaje publicador = new PublicadorMensaje();
+       
+         publicador.registrarObservador(ma);
+       
         
-     
+        int a=JOptionPane.showConfirmDialog(null,"Confirmar compra?");  
+        if(a==JOptionPane.YES_OPTION){  
+    publicador.notificarObservadores(new Mensaje("Mensaje prueba"));
+    
+}  else 
+        {
+            System.out.println("Se devuelve al carrito");
+        }
         
     }
 
