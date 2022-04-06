@@ -10,52 +10,44 @@ public class Login extends Servicio implements Serializable {
 
     public String usuario;
     public String contrasenna;
-    public int tempIDuser;
-    boolean bandera = false;
-
-    public int getTempIDuser() {
-        return tempIDuser;
-    }
-
-    public void setTempIDuser(int tempIDuser) {
-        this.tempIDuser = tempIDuser;
-    }
+    public String userlevel;
 
     public void ingresar() {
 
         Statement stmt = null;
         ResultSet rs = null;
-        
+
         try {
             stmt = super.getConexion().createStatement();
-            String sql = "SELECT * FROM User";
+            String sql = "SELECT userId, userPassword, userLevel FROM User WHERE userId = '" + usuario + "' ";
             rs = stmt.executeQuery(sql);
 
-            while (rs.next()) {
-                String tempPassword = rs.getNString("userPassword");
+            if (rs.next()) {
+                // si existe el usuario
                 String tempID = rs.getString("userId");
+                String tempPassword = rs.getNString("userPassword");
                 String tempTipo = rs.getString("userLevel");
 
-                if (usuario.equals(tempID) && contrasenna.equals(tempPassword) && tempTipo.equals("1")) {
-                    JOptionPane.showMessageDialog(null, "Se ingreso al sistema como Usuario1 (Admin)");
-                    //bandera=true;
-                    break;
-                    
+                if (contrasenna.equals(tempPassword)) {
+                    // Verificar si es admin o cliente
+
+                    if (tempTipo.equals("1")) {
+                        JOptionPane.showMessageDialog(null, "Ingresó como admin");
+                    } else if (tempTipo.equals("2")) {
+                        JOptionPane.showMessageDialog(null, "Ingresó como cliente");
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "La contraseña es incorrecta");
+
                 }
-                if (usuario.equals(tempID) && contrasenna.equals(tempPassword) && tempTipo.equals("2")){
-                        
-                JOptionPane.showMessageDialog(null, "Se ingreso al sistema como Usuario2 (Cliente)");
-                //bandera=true;
-                break;
-                
-                
-                }else{
-                    
-                
-                JOptionPane.showMessageDialog(null, "Sus datos no son validos. Registrese o intentelo de nuevo");
-                    break;
-                }
-                }
+            } else {
+                // si el usuario no existe
+
+                JOptionPane.showMessageDialog(null, "El usuario no existe registrado");
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,36 +60,27 @@ public class Login extends Servicio implements Serializable {
 
     public void digitarUsuario() {
 
-        JOptionPane.showMessageDialog(null, "Bienvenido a la tienda en linea ");
-        usuario = JOptionPane.showInputDialog(null, "Usuario");
+        JOptionPane.showMessageDialog(null, "Bienvenido a la tienda en linea");
+        usuario = JOptionPane.showInputDialog(null, "Digite su cédula");
 
     }
 
     public void digitarContrasena() {
 
-        contrasenna = JOptionPane.showInputDialog(null, "Contrasena");
+        contrasenna = JOptionPane.showInputDialog(null, "Digite su contraseña");
     }
 
     public void validacionDatos() {
-      // do {
-           
-       
-         
+
         digitarUsuario();
         digitarContrasena();
-       
-      
-        
         try {
             ingresar();
-              //while(bandera =! true);
-        
-        
-      
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR EN INGRESAR");
+            JOptionPane.showMessageDialog(null, "ERROR");
             e.printStackTrace();
         }
+
     }
 
     public String getUsuario() {
