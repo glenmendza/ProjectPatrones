@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -70,6 +71,9 @@ public class ProductosModificar extends Servicio implements ComportamientoProduc
     }
     
     public void eliminarProducto(int id){
+         
+        
+       
           PreparedStatement st = null;
         try {
             this.conectar();

@@ -13,33 +13,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ProductosModificar.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Plantillas.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/Carrito.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronObservador/Mensaje.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Nailon.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/InterfazGrafica/Login.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/PedidosMostrar.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/SneakersNikeEL.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/TiendaVirtual.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Cordones.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/Producto2.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ProductosVer.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/CrearSneaker.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/CarritoNoMostrar.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Pedido.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/CarritoMostrar.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/CarritoBase.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/Decorador.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/SneakersNewBalanceEL.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Caucho.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Acolchonadas.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistrarAdmin.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistroTO.java</file>
             <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/Producto1.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Goma.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Delgadas.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Producto.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Suelas.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/Poliester.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/InterfazGrafica/Login.java</file>
+            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/CrearSneaker.java</file>
         </group>
     </open-files>
 </project-private>

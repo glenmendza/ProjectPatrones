@@ -35,8 +35,7 @@ public class Tester {
          */
         //RegistrarAdmin regadmin = new RegistrarAdmin();
 
-        RegistroTO regto = new RegistroTO();
-        //regadmin.insert(regto);
+        
 
         RegistrarCliente regcliente = new RegistrarCliente();
 
@@ -47,23 +46,24 @@ public class Tester {
 
         ServicioUsuario servicioUsuario = new ServicioUsuario();
 
-        List<UsuarioTO> listado = servicioUsuario.demePersonas();
+        /*List<UsuarioTO> listado = servicioUsuario.demePersonas();
         for (UsuarioTO usuarioTO : listado) {
             System.out.println(usuarioTO.getUserName() + " " + usuarioTO.getUserEmail());
         }
         System.out.println("====================================");
         UsuarioTO usuarioTORetorno = servicioUsuario.demePersona(2);
         System.out.println("La persona es : " + usuarioTORetorno.getUserName());
-
+*/
         //Funciones Administrativas en la lista de productos
-        modificarProductos.eliminarProducto(1);
+       // modificarProductos.eliminarProducto(1);
 
-        List<Producto> listadoP = verProductos.Productos();
+        /* List<Producto> listadoP = verProductos.Productos();
         for (Producto producto : listadoP) {
             System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
 
         }
-
+*/
+        /*
         Producto producto4 = new Producto();
         producto4.setIdProducto(4);
         producto4.setNombre("Top Mujer rojo");
@@ -71,7 +71,9 @@ public class Tester {
         producto4.setPrecio(39.99);
 
         modificarProductos.agregarProducto(producto4);
-
+*/
+        
+        /*
         for (Producto producto : listadoP) {
             //System.out.println(producto.getIdProducto() + " " + producto.getNombre()+" "+producto.getDescripcion()+" "+producto.getPrecio());
             JOptionPane.showMessageDialog(null, "ID producto: " + producto.getIdProducto() + "\n"
@@ -80,8 +82,8 @@ public class Tester {
                     + "Precio del producto: " + producto.getPrecio());
 
         }
-
-        //Mostrar la lista de pedidos
+*/
+        /*Mostrar la lista de pedidos
         PedidosMostrar mostrarPedidos = new PedidosMostrar();
         List<Pedido> listadoPe = mostrarPedidos.Pedidos();
         for (Pedido pedido : listadoPe) {
@@ -90,13 +92,13 @@ public class Tester {
                     + "ID del usuario: " + pedido.getIdUsuario() + "\n"
                     + "ID del producto: " + pedido.getIdProducto());
         }
-
+*/
         MensajeAdmin ma = new MensajeAdmin();
         MensajeUsuario mu = new MensajeUsuario();
         PublicadorMensaje publicador = new PublicadorMensaje();
 
         publicador.registrarObservador(ma);
-
+/*
         int a = JOptionPane.showConfirmDialog(null, "Confirmar compra?");
         if (a == JOptionPane.YES_OPTION) {
             publicador.notificarObservadores(new Mensaje("Mensaje prueba"));
@@ -104,6 +106,7 @@ public class Tester {
         } else {
             System.out.println("Se devuelve al carrito");
         }
+*/
 
     }
 
