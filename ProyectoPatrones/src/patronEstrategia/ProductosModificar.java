@@ -10,12 +10,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import InterfazGrafica.*;
 /**
  *
  * @author haziellopez
  */
 public class ProductosModificar extends Servicio implements ComportamientoProductos{
+    
+     
     public List<Producto> Productos() {
         Statement stmt = null;
         ResultSet rs = null;
@@ -89,5 +91,7 @@ public class ProductosModificar extends Servicio implements ComportamientoProduc
         
        
     }
+   
+    
     
 }

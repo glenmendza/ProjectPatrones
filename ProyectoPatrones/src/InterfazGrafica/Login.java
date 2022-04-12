@@ -2,6 +2,7 @@ package InterfazGrafica;
 
 import patronEstrategia.Servicio;
 import java.io.Serializable;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
@@ -64,6 +65,39 @@ public class Login extends Servicio implements Serializable {
         }
     }
     
+    public void registrarUsuario()
+    {
+       PreparedStatement preparedStatement = null;
+        
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese su ID"));
+        String name = JOptionPane.showInputDialog(null,"Ingrese su nombre");
+        String lastname = JOptionPane.showInputDialog(null,"Ingrese su apellido");
+        String email = JOptionPane.showInputDialog(null,"Ingrese su email");
+        String pass = JOptionPane.showInputDialog(null,"Ingrese su contraseña");
+        
+        
+        try {
+            conectar();
+            String sql = "INSERT INTO User(userId, userName, userLastName, userEmail, userPassword, userLevel) VALUES(?,?,?,?,?,2);";
+            preparedStatement = conexion.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, lastname);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, pass);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarPreparedStatement(preparedStatement);
+            //closePreparedStatement(preparedStatement);
+            //disconnect();
+            desconectar();
+        }
+        
+        inicio();
+    }
+    
     public void menuAdmin()
     {
         Scanner in = new Scanner(System.in);
@@ -97,7 +131,8 @@ public class Login extends Servicio implements Serializable {
                gestionarPedidos();
                 break;
             case 4:
-                return;
+                inicio();
+                break;
             default:
                 System.out.println("Opcion erronea");
                 break;
@@ -133,6 +168,8 @@ public class Login extends Servicio implements Serializable {
                         System.out.println("Digite el id del producto que desea eliminar: ");
                         int id = in2.nextInt();
                        modificarProductos.eliminarProducto(id);
+                       System.out.println("Producto eliminado");
+                       gestionarProductos();
                        break;
                    case 2:
                        Producto producto = new Producto();
@@ -161,6 +198,8 @@ public class Login extends Servicio implements Serializable {
                        
                        
                        modificarProductos.agregarProducto(producto);
+                       System.out.println("Producto agregado");
+                       gestionarProductos();
                        break;
                        
                    case 3:
@@ -219,7 +258,8 @@ ProductosVer verProductos = new ProductosVer();
      menuCliente();
                 break;
             case 3:
-                return;
+                 inicio();
+                 break;
             default:
                 System.out.println("Opcion erronea");
                 break;
@@ -227,9 +267,28 @@ ProductosVer verProductos = new ProductosVer();
          
     }
 
+    public void inicio(){
+        String[] opciones = {"Ingresar", "Registrar"};
+        
+        int x = JOptionPane.showOptionDialog(null, "Bienvenido a la tienda en linea",
+                "Bienvenido",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+        if(x==1)
+        {
+         registrarUsuario();   
+        }else if(x==0)
+        {
+            validacionDatos();
+        }else{
+            System.out.println("Ninguna opcion seleccionada");
+            
+        }
+        
+
+    }
     public void digitarUsuario() {
 
-        JOptionPane.showMessageDialog(null, "Bienvenido a la tienda en linea");
+       
         usuario = JOptionPane.showInputDialog(null, "Digite su cédula");
 
     }
@@ -240,7 +299,7 @@ ProductosVer verProductos = new ProductosVer();
     }
 
     public void validacionDatos() {
-
+        
         digitarUsuario();
         digitarContrasena();
         try {

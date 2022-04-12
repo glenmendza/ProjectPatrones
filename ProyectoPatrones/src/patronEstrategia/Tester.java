@@ -42,7 +42,7 @@ public class Tester {
         //registro de un nuevo cliente
         //regcliente.insert(regto);
         Login log = new Login();
-        log.validacionDatos();
+        log.inicio();
 
         ServicioUsuario servicioUsuario = new ServicioUsuario();
 
