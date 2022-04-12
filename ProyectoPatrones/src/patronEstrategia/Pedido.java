@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package patronEstrategia;
-
+import java.time.*; 
 import java.io.Serializable;
+import java.util.*;
+import java.text.*;
 
 /**
  *
@@ -14,17 +16,21 @@ public class Pedido implements Serializable{
     private int idProducto;
     private int numPedido;
     private int idUsuario;
+    private Date fecha;
+    SimpleDateFormat ft = 
+      new SimpleDateFormat ("dd.MM.yyyy");
     
     
     public Pedido(){
-        
+     
     }
     
-    public Pedido(int idProducto,int numPedido, int idUsuario)
+    public Pedido(int idProducto,int numPedido, int idUsuario,Date fecha)
     {
         this.idProducto=idProducto;
         this.numPedido = numPedido;
         this.idUsuario = idUsuario;
+        this.fecha=fecha;
     }
 
     public int getIdProducto() {
@@ -51,6 +57,15 @@ public class Pedido implements Serializable{
         this.idUsuario = idUsuario;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    
    
     
 }

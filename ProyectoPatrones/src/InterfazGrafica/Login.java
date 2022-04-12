@@ -91,9 +91,10 @@ public class Login extends Servicio implements Serializable {
         RegistroTO regto = new RegistroTO();
         RegistrarAdmin registro = new RegistrarAdmin();
         registro.insert(regto);
+        menuAdmin();
                 break;
             case 3:
-               
+               gestionarPedidos();
                 break;
             case 4:
                 return;
@@ -175,10 +176,55 @@ public class Login extends Servicio implements Serializable {
     }
 
     public void gestionarPedidos(){
-        
+      PedidosMostrar mostrarPedidos = new PedidosMostrar();
+      mostrarPedidos.Pedidos();
+      
+      List<Pedido> listadoPe = mostrarPedidos.Pedidos();
+        for (Pedido pedido : listadoPe) {
+            System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario() + " " + pedido.getIdProducto());
     }
-    public void menuCliente() {
+        menuAdmin();
+    }
+   
+//Menu principal de los clientes
+public void menuCliente() {
 
+    Scanner in = new Scanner(System.in);
+ProductosVer verProductos = new ProductosVer();        
+
+// Display del menu para clientes
+         System.out.println("========= Menu de Cliente =========");
+        System.out.println("1)\t Ver Lista de productos");
+        System.out.println("2)\t Ver carrito de compras");
+         System.out.println("3)\t Salir del sistema");
+        
+       
+        System.out.println("Ingrese la opcion que desea:");
+        
+         int opc = in.nextInt();       
+        switch (opc) {
+            case 1:
+      
+          List<Producto> listadoP = verProductos.Productos();
+                System.out.println("====== Lista de Productos =======");
+        for (Producto producto : listadoP) {
+            System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
+              }
+        menuCliente();
+        break;
+        
+        case 2:
+     CarritoMostrar mostrarCarrito = new CarritoMostrar();
+     mostrarCarrito.Carrito();
+     menuCliente();
+                break;
+            case 3:
+                return;
+            default:
+                System.out.println("Opcion erronea");
+                break;
+        }//end of switch
+         
     }
 
     public void digitarUsuario() {

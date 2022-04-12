@@ -29,7 +29,8 @@ public class PedidosMostrar extends Servicio implements ComportamientoPedidos{
                 pe.setNumPedido(rs.getInt("NumPedido"));
                 pe.setIdUsuario(rs.getInt("idUsuario"));
                 pe.setIdProducto(rs.getInt("idProducto"));
-               
+                pe.setFecha(rs.getDate("Fecha"));
+                
                 listaRetorno.add(pe);
             }
 
@@ -40,7 +41,7 @@ public class PedidosMostrar extends Servicio implements ComportamientoPedidos{
             cerrarStatement(stmt);
             desconectar();
         }
-             System.out.println("======== Lista de Pedidos ===========");
+             
         return listaRetorno;
     }
    
