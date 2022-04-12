@@ -8,8 +8,19 @@ package patronFabrica;
  *
  * @author haziellopez
  */
-public abstract class Distribuidora {
-    public abstract Tops CrearTop();
-    public abstract Sneakers CrearSneaker();
-    
+public class SneakersNikeEL extends TiendaVirtual{
+ public Cordones CrearCordones()
+ {
+     return new Poliester();
+ }
+ 
+ public Plantillas CrearPlantillas()
+ {
+     return new Acolchonadas();
+ }
+ 
+ public Suelas CrearSuelas()
+ {
+     return new Caucho();
+ }
 }
