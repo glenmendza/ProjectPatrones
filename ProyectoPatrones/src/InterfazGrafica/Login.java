@@ -10,7 +10,6 @@ import java.util.Scanner;
 import patronEstrategia.*;
 import java.util.Random;
 
-
 public class Login extends Servicio implements Serializable {
 
     public String usuario;
@@ -63,38 +62,34 @@ public class Login extends Servicio implements Serializable {
             desconectar();
         }
     }
-    
-    public void menuAdmin()
-    {
+
+    public void menuAdmin() {
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
-         System.out.println("========= Menu Administrativo =========");
+        System.out.println("========= Menu Administrativo =========");
         System.out.println("1)\t Gestionar Productos");
         System.out.println("2)\t Agregar usuario administrador");
         System.out.println("3)\t Gestionar Pedidos");
-         System.out.println("4)\t Salir del sistema");
-        
-       
+        System.out.println("4)\t Salir del sistema");
+
         System.out.println("Ingrese la opcion que desea:");
-        
-         int opc = in.nextInt();
-        
-             
-            
+
+        int opc = in.nextInt();
+
         switch (opc) {
             case 1:
-        //menu admin productos
-      
-         gestionarProductos();
-        break;
-        case 2:
-        RegistroTO regto = new RegistroTO();
-        RegistrarAdmin registro = new RegistrarAdmin();
-        registro.insert(regto);
-        menuAdmin();
+                //menu admin productos
+
+                gestionarProductos();
+                break;
+            case 2:
+                RegistroTO regto = new RegistroTO();
+                RegistrarAdmin registro = new RegistrarAdmin();
+                registro.insert(regto);
+                menuAdmin();
                 break;
             case 3:
-               gestionarPedidos();
+                gestionarPedidos();
                 break;
             case 4:
                 return;
@@ -102,121 +97,122 @@ public class Login extends Servicio implements Serializable {
                 System.out.println("Opcion erronea");
                 break;
         }//end of switch
-         
+
     }//fin de metodo menu admin
 
-    
-    
     public void gestionarProductos() {
         //Declaracion de los scanners
-         Scanner in2 = new Scanner(System.in);
-         Scanner in3 = new Scanner(System.in);
-         Scanner in4 = new Scanner(System.in);
-        
-              
+        Scanner in2 = new Scanner(System.in);
+        Scanner in3 = new Scanner(System.in);
+        Scanner in4 = new Scanner(System.in);
+
         List<Producto> listadoP = modificarProductos.Productos();
-                System.out.println("====== Lista de Productos =======");
+        System.out.println("====== Lista de Productos =======");
         for (Producto producto : listadoP) {
-            System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
-              }
-        
+            System.out.println(producto.getIdProducto() + " | " + producto.getNombre() + " | " + producto.getDescripcion() + " | " + producto.getPrecio());
+        }
+
         System.out.println("1)\t Eliminar un producto: ");
         System.out.println("2)\t Agregar un producto: ");
-        System.out.println("3)\t Volver: ");
-        
-        System.out.println("Ingrese la opcion que desea:");
-        
+        System.out.println("3)\t Volver al menú: ");
+
+        System.out.println("Ingrese la opción que desea:");
+
         int opc1 = in2.nextInt();
-               switch(opc1){
-                   case 1:
-                       
-                        System.out.println("Digite el id del producto que desea eliminar: ");
-                        int id = in2.nextInt();
-                       modificarProductos.eliminarProducto(id);
-                       break;
-                   case 2:
-                       Producto producto = new Producto();
-                       
-                       
-                       Random rand = new Random();
-                       int upperbound = 10000;
-                       
-                       
-                       
-                       
-                       
-                       System.out.println("\t Nombre del producto: ");
-                       String nombre=in3.nextLine();
-                       producto.setNombre(nombre);
-                      
-                       System.out.println("\t Descripcion: "); 
-                       String descripcion=in4.nextLine();
-                       producto.setDescripcion(descripcion);
-                       
-                       System.out.println("\t Precio: ");    
-                       double precio=in2.nextDouble();
-                       producto.setPrecio(precio);
-                       
-                       producto.setIdProducto(rand.nextInt(upperbound));
-                       
-                       
-                       modificarProductos.agregarProducto(producto);
-                       break;
-                       
-                   case 3:
-                       menuAdmin();
-                       break;
-                       
-                        default:
-                System.out.println("Opcion erronea");
+        switch (opc1) {
+            case 1:
+                try {
+                    System.out.println("Digite el id del producto que desea eliminar: ");
+                    int id = in2.nextInt();
+                    modificarProductos.eliminarProducto(id);
+                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                } finally {
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado  producto con éxito con los siguientes datos.\n\n");
+                }
+            case 2:
+                Producto producto = new Producto();
+
+                try {
+
+                    Random rand = new Random();
+                    int upperbound = 10000;
+
+                    System.out.println("\t Nombre del producto: ");
+                    String nombre = in3.nextLine();
+                    producto.setNombre(nombre);
+
+                    System.out.println("\t Descripción: ");
+                    String descripcion = in4.nextLine();
+                    producto.setDescripcion(descripcion);
+
+                    System.out.println("\t Precio: ");
+                    double precio = in2.nextDouble();
+                    producto.setPrecio(precio);
+
+                    producto.setIdProducto(rand.nextInt(upperbound));
+
+                    modificarProductos.agregarProducto(producto);
+                    break;
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                } finally {
+                    JOptionPane.showMessageDialog(null, "Se ha añadido un producto con éxito con los siguientes datos.\n\nID del producto: " + producto.getIdProducto() + "\nNombre del producto : " + producto.getNombre() + "\nDescripción: " + producto.getDescripcion() + "\nPrecio: " + producto.getPrecio());
+                }
+
+            case 3:
+                menuAdmin();
+                break;
+
+            default:
+                System.out.println("Opcion errónea");
                 gestionarProductos();
-               }
-                
-            
+        }
+
     }
 
-    public void gestionarPedidos(){
-      PedidosMostrar mostrarPedidos = new PedidosMostrar();
-      mostrarPedidos.Pedidos();
-      
-      List<Pedido> listadoPe = mostrarPedidos.Pedidos();
+    public void gestionarPedidos() {
+        PedidosMostrar mostrarPedidos = new PedidosMostrar();
+        mostrarPedidos.Pedidos();
+
+        List<Pedido> listadoPe = mostrarPedidos.Pedidos();
         for (Pedido pedido : listadoPe) {
             System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario() + " " + pedido.getIdProducto());
-    }
+        }
         menuAdmin();
     }
-   
-//Menu principal de los clientes
-public void menuCliente() {
 
-    Scanner in = new Scanner(System.in);
-ProductosVer verProductos = new ProductosVer();        
+//Menu principal de los clientes
+    public void menuCliente() {
+
+        Scanner in = new Scanner(System.in);
+        ProductosVer verProductos = new ProductosVer();
 
 // Display del menu para clientes
-         System.out.println("========= Menu de Cliente =========");
+        System.out.println("========= Menu de Cliente =========");
         System.out.println("1)\t Ver Lista de productos");
         System.out.println("2)\t Ver carrito de compras");
-         System.out.println("3)\t Salir del sistema");
-        
-       
+        System.out.println("3)\t Salir del sistema");
+
         System.out.println("Ingrese la opcion que desea:");
-        
-         int opc = in.nextInt();       
+
+        int opc = in.nextInt();
         switch (opc) {
             case 1:
-      
-          List<Producto> listadoP = verProductos.Productos();
+
+                List<Producto> listadoP = verProductos.Productos();
                 System.out.println("====== Lista de Productos =======");
-        for (Producto producto : listadoP) {
-            System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
-              }
-        menuCliente();
-        break;
-        
-        case 2:
-     CarritoMostrar mostrarCarrito = new CarritoMostrar();
-     mostrarCarrito.Carrito();
-     menuCliente();
+                for (Producto producto : listadoP) {
+                    System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
+                }
+                menuCliente();
+                break;
+
+            case 2:
+                CarritoMostrar mostrarCarrito = new CarritoMostrar();
+                mostrarCarrito.Carrito();
+                menuCliente();
                 break;
             case 3:
                 return;
@@ -224,7 +220,7 @@ ProductosVer verProductos = new ProductosVer();
                 System.out.println("Opcion erronea");
                 break;
         }//end of switch
-         
+
     }
 
     public void digitarUsuario() {

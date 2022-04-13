@@ -39,11 +39,13 @@ public class RegistrarAdmin extends Servicio implements ComportamientoRegistro {
             preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
         } finally {
             cerrarPreparedStatement(preparedStatement);
             //closePreparedStatement(preparedStatement);
             //disconnect();
             desconectar();
+            JOptionPane.showMessageDialog(null, "Se ha registrado a un usuario administrador con éxito con los siguientes datos.\n\nCédula: "+id+"\nNombre: "+name+"\nCorreo: "+email);
         }
     }
 
