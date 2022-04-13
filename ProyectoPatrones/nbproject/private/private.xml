@@ -12,12 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/ProductosModificar.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistrarAdmin.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistroTO.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/InterfazGrafica/Login.java</file>
-            <file>file:/Users/haziellopez/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronFabrica/CrearSneaker.java</file>
+            <file>file:/F:/Developer/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
+            <file>file:/F:/Developer/GitHub/ProjectPatrones/ProyectoPatrones/src/InterfazGrafica/Login.java</file>
+            <file>file:/F:/Developer/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/RegistrarAdmin.java</file>
+            <file>file:/F:/Developer/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Servicio.java</file>
         </group>
     </open-files>
 </project-private>

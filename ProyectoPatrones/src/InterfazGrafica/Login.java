@@ -2,13 +2,16 @@ package InterfazGrafica;
 
 import patronEstrategia.Servicio;
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 import javax.swing.*;
-import java.util.Scanner;
 import patronEstrategia.*;
-import java.util.Random;
+//import java.sql.ResultSet;
+//import java.sql.Statement;
+//import java.util.List;
+//import java.util.Scanner;
+//import java.util.Random;
+//import java.sql.PreparedStatement;
 
 public class Login extends Servicio implements Serializable {
 
@@ -37,20 +40,24 @@ public class Login extends Servicio implements Serializable {
                     // Verificar si es admin o cliente
 
                     if (tempTipo.equals("1")) {
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + usuario + ". Ingresó como administrador! ", "7Shop", JOptionPane.INFORMATION_MESSAGE);
                         menuAdmin();
                     } else if (tempTipo.equals("2")) {
+                        JOptionPane.showMessageDialog(null, "Bienvenido " + usuario + ". Ingresó como cliente! ", "7Shop", JOptionPane.INFORMATION_MESSAGE);
                         menuCliente();
                     }
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "La contraseña es incorrecta");
+                    JOptionPane.showMessageDialog(null, "La contraseña es incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    inicio();
 
                 }
             } else {
                 // si el usuario no existe
 
-                JOptionPane.showMessageDialog(null, "El usuario no está registrado");
+                JOptionPane.showMessageDialog(null, "El usuario no está registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+                inicio();
 
             }
 
@@ -63,16 +70,48 @@ public class Login extends Servicio implements Serializable {
         }
     }
 
+    public void registrarUsuario() {
+        PreparedStatement preparedStatement = null;
+
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su cédula", "7Shop", JOptionPane.INFORMATION_MESSAGE));
+        String name = JOptionPane.showInputDialog(null, "Ingrese su nombre", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+        String lastname = JOptionPane.showInputDialog(null, "Ingrese su apellido", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+        String email = JOptionPane.showInputDialog(null, "Ingrese su email", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+        String pass = JOptionPane.showInputDialog(null, "Ingrese su contraseña", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+
+        try {
+            conectar();
+            String sql = "INSERT INTO User(userId, userName, userLastName, userEmail, userPassword, userLevel) VALUES(?,?,?,?,?,2);";
+            preparedStatement = conexion.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, lastname);
+            preparedStatement.setString(4, email);
+            preparedStatement.setString(5, pass);
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            cerrarPreparedStatement(preparedStatement);
+            desconectar();
+            JOptionPane.showMessageDialog(null, "Tu registro se ha completado con éxito.\nAhora puedes ingresar sesión con los siguientes datos\n\nID: " + id + "\nContraseña : " + pass, "7Shop", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        inicio();
+    }
+
     public void menuAdmin() {
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
         System.out.println("========= Menu Administrativo =========");
-        System.out.println("1)\t Gestionar Productos");
+        System.out.println("1)\t Gestionar productos");
         System.out.println("2)\t Agregar usuario administrador");
-        System.out.println("3)\t Gestionar Pedidos");
-        System.out.println("4)\t Salir del sistema");
+        System.out.println("3)\t Gestionar pedidos");
+        System.out.println("4)\t Cerrar sesión");
+        System.out.println("5)\t Salir del sistema");
 
-        System.out.println("Ingrese la opcion que desea:");
+        System.out.println("Ingrese la opción que desea:");
 
         int opc = in.nextInt();
 
@@ -92,9 +131,18 @@ public class Login extends Servicio implements Serializable {
                 gestionarPedidos();
                 break;
             case 4:
-                return;
+                inicio();
+            case 5:
+                int resp = JOptionPane.showConfirmDialog(null, "Desea salir del sistema?", "7Shop", JOptionPane.YES_NO_OPTION);
+                if (resp == JOptionPane.YES_OPTION) {
+                    System.out.println("Saliendo del sistema...");
+                    System.exit(0);
+                }
+                if (resp == JOptionPane.NO_OPTION) {
+                    menuAdmin();
+                }
             default:
-                System.out.println("Opcion erronea");
+                System.out.println("Opción errónea");
                 break;
         }//end of switch
 
@@ -122,14 +170,16 @@ public class Login extends Servicio implements Serializable {
         switch (opc1) {
             case 1:
                 try {
-                    System.out.println("Digite el id del producto que desea eliminar: ");
+                    System.out.println("Digite el ID del producto que desea eliminar: ");
                     int id = in2.nextInt();
                     modificarProductos.eliminarProducto(id);
+
                     break;
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
                 } finally {
-                    JOptionPane.showMessageDialog(null, "Se ha eliminado  producto con éxito con los siguientes datos.\n\n");
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado  producto con éxito", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+                    gestionarProductos();
                 }
             case 2:
                 Producto producto = new Producto();
@@ -156,9 +206,10 @@ public class Login extends Servicio implements Serializable {
                     modificarProductos.agregarProducto(producto);
                     break;
                 } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
                 } finally {
-                    JOptionPane.showMessageDialog(null, "Se ha añadido un producto con éxito con los siguientes datos.\n\nID del producto: " + producto.getIdProducto() + "\nNombre del producto : " + producto.getNombre() + "\nDescripción: " + producto.getDescripcion() + "\nPrecio: " + producto.getPrecio());
+                    JOptionPane.showMessageDialog(null, "Se ha añadido un producto con éxito con los siguientes datos.\n\nID del producto: " + producto.getIdProducto() + "\nNombre del producto : " + producto.getNombre() + "\nDescripción: " + producto.getDescripcion() + "\nPrecio: " + producto.getPrecio(), "7Shop", JOptionPane.INFORMATION_MESSAGE);
+                    gestionarProductos();
                 }
 
             case 3:
@@ -166,7 +217,7 @@ public class Login extends Servicio implements Serializable {
                 break;
 
             default:
-                System.out.println("Opcion errónea");
+                System.out.println("Opción errónea");
                 gestionarProductos();
         }
 
@@ -191,11 +242,11 @@ public class Login extends Servicio implements Serializable {
 
 // Display del menu para clientes
         System.out.println("========= Menu de Cliente =========");
-        System.out.println("1)\t Ver Lista de productos");
+        System.out.println("1)\t Ver lista de productos");
         System.out.println("2)\t Ver carrito de compras");
         System.out.println("3)\t Salir del sistema");
 
-        System.out.println("Ingrese la opcion que desea:");
+        System.out.println("Ingrese la opción que desea:");
 
         int opc = in.nextInt();
         switch (opc) {
@@ -204,7 +255,7 @@ public class Login extends Servicio implements Serializable {
                 List<Producto> listadoP = verProductos.Productos();
                 System.out.println("====== Lista de Productos =======");
                 for (Producto producto : listadoP) {
-                    System.out.println(producto.getIdProducto() + " " + producto.getNombre() + " " + producto.getDescripcion() + " " + producto.getPrecio());
+                    System.out.println(producto.getIdProducto() + " | " + producto.getNombre() + " | " + producto.getDescripcion() + " | " + producto.getPrecio());
                 }
                 menuCliente();
                 break;
@@ -215,24 +266,45 @@ public class Login extends Servicio implements Serializable {
                 menuCliente();
                 break;
             case 3:
-                return;
+                inicio();
+                break;
             default:
-                System.out.println("Opcion erronea");
+                System.out.println("Opción errónea");
                 break;
         }//end of switch
 
     }
 
-    public void digitarUsuario() {
+    public void inicio() {
+        String[] opciones = {"Ingresar", "Registrar"};
 
-        JOptionPane.showMessageDialog(null, "Bienvenido a la tienda en linea");
-        usuario = JOptionPane.showInputDialog(null, "Digite su cédula");
+        int x = JOptionPane.showOptionDialog(null, "Bienvenido a la tienda en línea",
+                "7Shop",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+        if (x == 1) {
+            registrarUsuario();
+        } else if (x == 0) {
+            validacionDatos();
+        } else {
+            int resp = JOptionPane.showConfirmDialog(null, "No seleccionaste ninguna opción\n\nDesea salir del sistema?", "7Shop", JOptionPane.YES_NO_OPTION);
+            if (resp == JOptionPane.YES_OPTION) {
+                System.out.println("Ninguna opción seleccionada, saliendo del sistema...");
+                System.exit(0);
+            }
+            if (resp == JOptionPane.NO_OPTION) {
+                inicio();
+            }
+
+        }
 
     }
 
-    public void digitarContrasena() {
+    public void digitarUsuario() {
+        usuario = JOptionPane.showInputDialog(null, "Digíte su cédula", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+    }
 
-        contrasenna = JOptionPane.showInputDialog(null, "Digite su contraseña");
+    public void digitarContrasena() {
+        contrasenna = JOptionPane.showInputDialog(null, "Digíte su contraseña", "7Shop", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void validacionDatos() {
@@ -242,7 +314,7 @@ public class Login extends Servicio implements Serializable {
         try {
             ingresar();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "ERROR");
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
 
