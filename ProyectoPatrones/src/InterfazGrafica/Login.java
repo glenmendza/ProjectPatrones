@@ -16,6 +16,7 @@ import patronDecorador.Carrito.*;
 
 public class Login extends Servicio implements Serializable {
 
+    static int idProducto;
     public String usuario;
     public String contrasenna;
     public String userlevel;
@@ -237,7 +238,7 @@ public class Login extends Servicio implements Serializable {
 
 //Menu principal de los clientes
     public void menuCliente() {
-        int idProducto;
+        
         Scanner in = new Scanner(System.in);
         ProductosVer verProductos = new ProductosVer();
         CarritoBase carrito = new CarritoBase();
@@ -273,7 +274,7 @@ public class Login extends Servicio implements Serializable {
                 break;
 
             case 3:
-        List<Producto> listaCarrito = carrito.BuscarProducto(4);
+        List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
                 System.out.println("========= Carrito de compras =========");
                 for (Producto productoC : listaCarrito) {
                     System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());        
