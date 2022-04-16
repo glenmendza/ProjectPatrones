@@ -1,4 +1,3 @@
-
 package patronDecorador.Carrito;
 
 import java.sql.ResultSet;
@@ -7,20 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import patronEstrategia.Producto;
 
-
 public class CarritoBase extends Carrito {
-    
-    
-       public List<Producto> BuscarProducto(int idProducto) {
+
+    static List<Producto> listaRetorno = new ArrayList<>();
+
+    public List<Producto> BuscarProducto(int idProducto) {
         Statement stmt = null;
         ResultSet rs = null;
-        List<Producto> listaRetorno = new ArrayList<>();
 
         try {
 
             stmt = super.getConexion().createStatement();
-            String sql = "SELECT * FROM Productos WHERE idProducto = "+idProducto;
-            
+            String sql = "SELECT * FROM Productos WHERE idProducto = " + idProducto;
 
             rs = stmt.executeQuery(sql);
 
@@ -42,5 +39,5 @@ public class CarritoBase extends Carrito {
         }
         return listaRetorno;
     }
-    
+
 }

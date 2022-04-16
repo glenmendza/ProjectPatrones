@@ -16,7 +16,7 @@ import patronDecorador.Carrito.*;
 
 public class Login extends Servicio implements Serializable {
 
-    static int idProducto;
+    static int idProducto=0;
     public String usuario;
     public String contrasenna;
     public String userlevel;
@@ -280,7 +280,7 @@ public class Login extends Servicio implements Serializable {
                     System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());        
                 }
                 CarritoCompras();
-                menuCliente();
+                //menuCliente();
                 break;
             
             case 4:
