@@ -1,43 +1,20 @@
 
 package patronDecorador.Carrito;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import patronEstrategia.*;
 
 
-public abstract class Carrito {
+public abstract class Carrito extends Servicio{
     
-    String nombre = "";
-    double costo;
-    int cantidad;
-    
-    ArrayList<Carrito> lstCarrito = new ArrayList<Carrito>();
-    
-     public void agregarProducto(Producto1 camisa) {
-         this.lstCarrito.add(camisa);
-}
+public abstract List<Producto> BuscarProducto(int idProducto);
+   
      
      
-     public String imprimirPedido() {
-      for(Carrito carrito:this.lstCarrito){
-          System.out.println(carrito.getNombre());
-          System.out.println(carrito.getCosto());
-          System.out.println(carrito.getCantidad());
-          System.out.println("---------------------------------\n"
-                  + "\n");
-      }
-      return "";
-  }
     
-    public String getNombre(){
-        return nombre;
-    }
-    
-    public double getCosto(){
-        return costo;
-    }
-    
-    public int getCantidad(){
-        return cantidad;
-    }
+ 
    
 }

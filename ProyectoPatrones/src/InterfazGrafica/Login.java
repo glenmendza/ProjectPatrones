@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.*;
 import javax.swing.*;
 import patronEstrategia.*;
+import patronDecorador.Carrito.*;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
 //import java.util.List;
@@ -236,15 +237,16 @@ public class Login extends Servicio implements Serializable {
 
 //Menu principal de los clientes
     public void menuCliente() {
-
+        int idProducto;
         Scanner in = new Scanner(System.in);
         ProductosVer verProductos = new ProductosVer();
-
+        CarritoBase carrito = new CarritoBase();
 // Display del menu para clientes
         System.out.println("========= Menu de Cliente =========");
         System.out.println("1)\t Ver lista de productos");
-        System.out.println("2)\t Ver carrito de compras");
-        System.out.println("3)\t Salir del sistema");
+        System.out.println("2)\t Agregar un producto al carrito");
+        System.out.println("3)\t Ver carrito de compras");
+        System.out.println("4)\t Salir del sistema");
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -259,13 +261,48 @@ public class Login extends Servicio implements Serializable {
                 }
                 menuCliente();
                 break;
+                
+                 case 2:
+                     
+                     System.out.println("Digite el id del producto que desea agregar: ");
+                     idProducto=in.nextInt();
+                     System.out.println(idProducto);
+                     carrito.BuscarProducto(idProducto);
+                     
+                     
+                     
+                     System.out.println("Producto agregado al carrito");
+                     menuCliente();
+                     
+                break;
 
-            case 2:
+            case 3:
+        /*List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
+                System.out.println("========= Carrito de compras =========");
+                for (Producto productoC : listaCarrito) {
+                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());
+            */    
+        
+        System.out.println("1)\t Eliminar Producto");
+        System.out.println("2)\t Regresar");
+                int opc2 = in.nextInt();
+                switch (opc2){
+                    case 1:
+                        System.out.println("Elimina el producto del id escrito");
+                        break;
+                    
+                    case 2:
+                        menuCliente();
+                        
+                        default:
+                System.out.println("Opción errónea");
+                break;
+                }
                 CarritoMostrar mostrarCarrito = new CarritoMostrar();
                 mostrarCarrito.Carrito();
                 menuCliente();
                 break;
-            case 3:
+            case 4:
                 inicio();
                 break;
             default:

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package patronEstrategia;
+import java.util.List;
+import patronDecorador.Carrito.*;
 
 /**
  *
@@ -10,7 +12,13 @@ package patronEstrategia;
  */
 public class CarritoMostrar implements ComportamientoCarrito{
    public void Carrito()
+           
    {
-       System.out.println("Se muestra el carrito");
+       CarritoBase carrito = new CarritoBase();
+       
+                System.out.println("====== Carrito de Compras =======");
+                for (Producto producto : carrito.ListaCarrito(0)) {
+                    System.out.println(producto.getIdProducto() + " | " + producto.getNombre() + " | " + producto.getDescripcion() + " | " + producto.getPrecio());
    }
+}
 }
