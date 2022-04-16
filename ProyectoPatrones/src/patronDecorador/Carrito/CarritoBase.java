@@ -27,7 +27,7 @@ public class CarritoBase extends Carrito {
                 p.setNombre(rs.getString("nombre"));
                 p.setDescripcion(rs.getString("descripcion"));
                 p.setPrecio(rs.getDouble("precio"));
-                listaRetorno.add(p);
+                listaRetorno.add(p);              
             }
 
         } catch (Exception e) {
