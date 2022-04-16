@@ -266,23 +266,35 @@ public class Login extends Servicio implements Serializable {
                      
                      System.out.println("Digite el id del producto que desea agregar: ");
                      idProducto=in.nextInt();
-                     System.out.println(idProducto);
-                     carrito.BuscarProducto(idProducto);
-                     
-                     
-                     
+                    
+                     carrito.BuscarProducto(idProducto);             
                      System.out.println("Producto agregado al carrito");
-                     menuCliente();
-                     
+                     menuCliente();                    
                 break;
 
             case 3:
-        /*List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
+        List<Producto> listaCarrito = carrito.BuscarProducto(4);
                 System.out.println("========= Carrito de compras =========");
                 for (Producto productoC : listaCarrito) {
-                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());
-            */    
-        
+                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());        
+                }
+                CarritoCompras();
+                menuCliente();
+                break;
+            
+            case 4:
+                inicio();
+                break;
+            default:
+                System.out.println("Opción errónea");
+                break;
+        }//end of switch
+
+    }
+    
+
+    public void CarritoCompras(){
+         Scanner in = new Scanner(System.in);
         System.out.println("1)\t Eliminar Producto");
         System.out.println("2)\t Regresar");
                 int opc2 = in.nextInt();
@@ -297,21 +309,9 @@ public class Login extends Servicio implements Serializable {
                         default:
                 System.out.println("Opción errónea");
                 break;
-                }
-                CarritoMostrar mostrarCarrito = new CarritoMostrar();
-                mostrarCarrito.Carrito();
-                menuCliente();
-                break;
-            case 4:
-                inicio();
-                break;
-            default:
-                System.out.println("Opción errónea");
-                break;
-        }//end of switch
-
+                } 
     }
-
+    
     public void inicio() {
         String[] opciones = {"Ingresar", "Registrar"};
 

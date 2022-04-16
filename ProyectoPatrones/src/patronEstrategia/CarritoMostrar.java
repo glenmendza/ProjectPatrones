@@ -17,7 +17,7 @@ public class CarritoMostrar implements ComportamientoCarrito{
        CarritoBase carrito = new CarritoBase();
        
                 System.out.println("====== Carrito de Compras =======");
-                for (Producto producto : carrito.ListaCarrito(0)) {
+                for (Producto producto : carrito.BuscarProducto(0)) {
                     System.out.println(producto.getIdProducto() + " | " + producto.getNombre() + " | " + producto.getDescripcion() + " | " + producto.getPrecio());
    }
 }
