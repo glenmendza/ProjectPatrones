@@ -76,37 +76,6 @@ public class Login extends Servicio implements Serializable {
         }
     }
 
-    public void registrarUsuario() {
-        PreparedStatement preparedStatement = null;
-
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese su cédula", "7Shop", JOptionPane.INFORMATION_MESSAGE));
-        String name = JOptionPane.showInputDialog(null, "Ingrese su nombre", "7Shop", JOptionPane.INFORMATION_MESSAGE);
-        String lastname = JOptionPane.showInputDialog(null, "Ingrese su apellido", "7Shop", JOptionPane.INFORMATION_MESSAGE);
-        String email = JOptionPane.showInputDialog(null, "Ingrese su email", "7Shop", JOptionPane.INFORMATION_MESSAGE);
-        String pass = JOptionPane.showInputDialog(null, "Ingrese su contraseña", "7Shop", JOptionPane.INFORMATION_MESSAGE);
-
-        try {
-            conectar();
-            String sql = "INSERT INTO User(userId, userName, userLastName, userEmail, userPassword, userLevel) VALUES(?,?,?,?,?,2);";
-            preparedStatement = conexion.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, lastname);
-            preparedStatement.setString(4, email);
-            preparedStatement.setString(5, pass);
-            preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
-        } finally {
-            cerrarPreparedStatement(preparedStatement);
-            desconectar();
-            JOptionPane.showMessageDialog(null, "Tu registro se ha completado con éxito.\nAhora puedes ingresar sesión con los siguientes datos\n\nID: " + id + "\nContraseña : " + pass, "7Shop", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        inicio();
-    }
-
     public void menuAdmin() {
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
@@ -316,12 +285,12 @@ public class Login extends Servicio implements Serializable {
                        
                         System.out.println("Compra completada con exito!");
                         String nombre;
-                         Mensaje mensaje = new Mensaje(String m);
+                         //Mensaje mensaje = new Mensaje(String m);
                         System.out.println("Digite su nombre: ");
-                       m = in.nextShort();
-                         mensaje.getMessageContent();
+                         //m = in.nextShort();
+                         //mensaje.getMessageContent();
                       
-                        sujetoConcreto.notificarObservadores(m);
+                        //sujetoConcreto.notificarObservadores(m);
                         /*actualizar observador para que le envie notificacion al admin de que usuario x realizó
                         un nuevo pedido.
                         Además agregar los datos de los productos y id de usuario a la tabla pedidos
@@ -342,7 +311,13 @@ public class Login extends Servicio implements Serializable {
                 "7Shop",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
         if (x == 1) {
-            registrarUsuario();
+            
+             RegistroTO regto = new RegistroTO();
+                RegistrarCliente registro = new RegistrarCliente();
+                registro.insert(regto);
+                inicio();
+            
+            //registrarUsuario();
         } else if (x == 0) {
             validacionDatos();
         } else {
