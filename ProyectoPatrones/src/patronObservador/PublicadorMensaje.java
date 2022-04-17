@@ -10,24 +10,45 @@ import java.util.List;
 
 //SUJETO CONCRETO
 public class PublicadorMensaje implements Sujeto {
-     
-    private List<Observador> observadores = new ArrayList<>();
+    private ArrayList observadores;
+    private String notificacion;
+    
+    public PublicadorMensaje()
+            {
+                observadores = new ArrayList();
+            }
  
-    @Override
+    
     public void registrarObservador(Observador o) {
         observadores.add(o);
     }
  
-    @Override
+   
     public void removerObservador(Observador o) {
-        observadores.remove(o);
+        int i = observadores.indexOf(o);
+        if(i >= 0)
+        {
+            observadores.remove(o);
+        }
     }
  
-    @Override
-    public void notificarObservadores(Mensaje m) {
-        for(Observador o: observadores) {
-            o.update(m);
+   
+    public void notificarObservadores() {
+        for(int i =0;i<observadores.size();i++) {
+            Observador observador = (Observador)observadores.get(i);
+            
+            observador.update(notificacion);
         }
+    }
+    
+    public void estadosCambiados(){
+        notificarObservadores();
+    }
+    
+    public void setEstados(String notificacion)
+    {
+        this.notificacion=notificacion;
+        estadosCambiados();
     }
 } 
 

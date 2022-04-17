@@ -9,6 +9,7 @@ import patronEstrategia.*;
 import patronDecorador.Carrito.*;
 import patronObservador.*;
 import java.time.*;
+import patronObservador.*;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
 //import java.util.List;
@@ -21,14 +22,20 @@ public class Login extends Servicio implements Serializable {
     CarritoBase carrito = new CarritoBase();
     PedidosMostrar mostrarPedidos = new PedidosMostrar();
     List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
-    static int idProducto = 0;
+    
+    ProductosModificar modificarProductos = new ProductosModificar();
 
+    static int idProducto = 0;
     public String usuario;
     public String contrasenna;
     public String userlevel;
-    ProductosModificar modificarProductos = new ProductosModificar();
+    
     Pedido pedido = new Pedido();
-
+   //Observador
+    PublicadorMensaje pMensaje = new PublicadorMensaje();
+    DisplayCondicionesActuales dCondiciones = new DisplayCondicionesActuales(pMensaje);
+    
+    
     public void ingresar() {
 
         Statement stmt = null;
@@ -88,6 +95,7 @@ public class Login extends Servicio implements Serializable {
         System.out.println("3)\t Gestionar pedidos");
         System.out.println("4)\t Cerrar sesión");
         System.out.println("5)\t Salir del sistema");
+        System.out.println(dCondiciones);
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -340,7 +348,7 @@ public class Login extends Servicio implements Serializable {
 
     public boolean CarritoCompras() {
         boolean confirmacion=false;
-        PublicadorMensaje sujetoConcreto = new PublicadorMensaje();
+        
         Scanner in = new Scanner(System.in);
           Random rand = new Random();
                     int upperbound = 10000;
@@ -356,6 +364,8 @@ public class Login extends Servicio implements Serializable {
             case 2:
                 System.out.println("Monto total: "+montoTotal());
                 System.out.println("Compra completada con exito!");
+                pMensaje.setEstados("Nuevo pedido realizado");
+                pMensaje.notificarObservadores();
                 confirmacion=true;
                  agregarPedido();
                 

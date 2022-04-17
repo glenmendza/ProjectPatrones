@@ -9,13 +9,19 @@ import patronEstrategia.RegistrarAdmin;
 import javax.swing.*;
 import patronObservador.*;
 import InterfazGrafica.*;
+import patronObservador.*;
 
 public class Tester {
 
     public static void main(String[] args) {
         Usuario admin = new UsuarioAdmin();
         ProductosVer verProductos = new ProductosVer();
-        ProductosModificar modificarProductos = new ProductosModificar();
+        
+        
+        
+        //Observador
+        
+        
         /*
         admin.display();
 
@@ -93,11 +99,9 @@ public class Tester {
                     + "ID del producto: " + pedido.getIdProducto());
         }
 */
-        MensajeAdmin ma = new MensajeAdmin();
-        MensajeUsuario mu = new MensajeUsuario();
-        PublicadorMensaje publicador = new PublicadorMensaje();
-
-        publicador.registrarObservador(ma);
+       
+        
+        
 /*
         int a = JOptionPane.showConfirmDialog(null, "Confirmar compra?");
         if (a == JOptionPane.YES_OPTION) {

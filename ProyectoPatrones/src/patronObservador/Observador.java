@@ -12,5 +12,5 @@ package patronObservador;
 //Observador
 public interface Observador 
 {
-    public void update(Mensaje m);
+    public void update(String notificacion);
 }

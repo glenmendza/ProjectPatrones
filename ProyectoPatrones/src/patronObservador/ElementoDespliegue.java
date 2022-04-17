@@ -8,12 +8,6 @@ package patronObservador;
  *
  * @author haziellopez
  */
-
-//sujeto
-public interface Sujeto {
-
-    public void registrarObservador(Observador o);
-    public void removerObservador(Observador o);
-    public void notificarObservadores();
-
+public interface ElementoDespliegue {
+    public void desplegar();
 }
