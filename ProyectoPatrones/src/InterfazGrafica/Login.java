@@ -8,6 +8,7 @@ import javax.swing.*;
 import patronEstrategia.*;
 import patronDecorador.Carrito.*;
 import patronObservador.*;
+import java.time.*;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
 //import java.util.List;
@@ -16,15 +17,16 @@ import patronObservador.*;
 //import java.sql.PreparedStatement;
 
 public class Login extends Servicio implements Serializable {
-    
+
     CarritoBase carrito = new CarritoBase();
     List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
-    static int idProducto=0;
-    
+    static int idProducto = 0;
+
     public String usuario;
     public String contrasenna;
     public String userlevel;
     ProductosModificar modificarProductos = new ProductosModificar();
+    Pedido pedido = new Pedido();
 
     public void ingresar() {
 
@@ -198,23 +200,117 @@ public class Login extends Servicio implements Serializable {
 
     }
 
+    public Pedido getPedido() {
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = super.getConexion().createStatement();
+            String sql = "SELECT Pedidos.NumPedido, User.userId, User.userName, User.userLastName, Pedidos.idProducto, Productos.nombre, Productos.descripcion, Productos.precio\n"
+                    + "FROM Pedidos\n"
+                    + "INNER JOIN User ON Pedidos.idUsuario = User.userId\n"
+                    + "INNER JOIN Productos ON Pedidos.idProducto = Productos.idProducto\n"
+                    + "WHERE Pedidos.idUsuario = ?;";
+
+            rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                // si existe el usuario         
+                pedido.setIdProducto(rs.getInt("idProducto"));
+                pedido.setNumPedido(rs.getInt("NumPedido"));
+                pedido.setIdUsuario(rs.getInt("idUsuario"));
+                pedido.setFecha(rs.getInt("fecha"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarResultSet(rs);
+            cerrarStatement(stmt);
+            desconectar();
+        }
+
+        return pedido;
+
+    }
+
+    public List<Pedido> getPedidos() {
+        Statement stmt = null;
+        ResultSet rs = null;
+        List<Pedido> pedidos = null;
+        
+        try {
+            stmt = super.getConexion().createStatement();
+            String sql = "SELECT idProducto, NumPedido, idUsuario, fecha\n"
+                    + "FROM Pedidos;";
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+
+                int idProducto = rs.getInt("IdProducto");
+                int numPedido = rs.getInt("NumPedido");
+                int idUsuario = rs.getInt("idUsuario");
+                int fecha = rs.getInt("fecha");
+
+                Pedido pedido = new Pedido(idProducto,numPedido,idUsuario,fecha);
+                pedidos.add(pedido);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarResultSet(rs);
+            cerrarStatement(stmt);
+            desconectar();
+        }
+
+        return pedidos;
+    }
+
     public void gestionarPedidos() {
+        Scanner in = new Scanner(System.in);
         PedidosMostrar mostrarPedidos = new PedidosMostrar();
         mostrarPedidos.Pedidos();
+        Pedido pedido = new Pedido();
 
-        List<Pedido> listadoPe = mostrarPedidos.Pedidos();
-        for (Pedido pedido : listadoPe) {
-            System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario() + " " + pedido.getIdProducto());
+// Display del menu para clientes
+        System.out.println("========= Gestión de pedidos =========");
+        System.out.println("1)\t Ver lista de pedidos");
+        System.out.println("2)\t Eliminar un pedido");
+        System.out.println("3)\t Actualizar un pedido");
+        System.out.println("4)\t Volver al menú");
+
+        System.out.println("Ingrese la opción que desea:");
+
+//        List<Pedido> listadoPe = mostrarPedidos.Pedidos();
+//        for (Pedido pedido : listadoPe) {
+//            System.out.println(pedido.getNumPedido() + " " + pedido.getIdUsuario() + " " + pedido.getIdProducto() + " " + pedido.getFecha());
+//        }
+        int opc = in.nextInt();
+        switch (opc) {
+            case 1:
+                    getPedidos();
+            case 2:
+
+            case 3:
+
+            case 4:
+                inicio();
+                break;
+            default:
+                System.out.println("Opción errónea");
+                break;
+            //end of switch
+
         }
         menuAdmin();
     }
-
 //Menu principal de los clientes
+
     public void menuCliente() {
-        
+
         Scanner in = new Scanner(System.in);
         ProductosVer verProductos = new ProductosVer();
-        
+
 // Display del menu para clientes
         System.out.println("========= Menu de Cliente =========");
         System.out.println("1)\t Ver lista de productos");
@@ -235,27 +331,27 @@ public class Login extends Servicio implements Serializable {
                 }
                 menuCliente();
                 break;
-                
-                 case 2:
-                     
-                     System.out.println("Digite el id del producto que desea agregar: ");
-                     idProducto=in.nextInt();
-                    
-                     carrito.BuscarProducto(idProducto);             
-                     System.out.println("Producto agregado al carrito");
-                     menuCliente();                    
+
+            case 2:
+
+                System.out.println("Digite el id del producto que desea agregar: ");
+                idProducto = in.nextInt();
+
+                carrito.BuscarProducto(idProducto);
+                System.out.println("Producto agregado al carrito");
+                menuCliente();
                 break;
 
             case 3:
-        
+
                 System.out.println("========= Carrito de compras =========");
                 for (Producto productoC : listaCarrito) {
-                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());        
+                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());
                 }
                 CarritoCompras();
                 //menuCliente();
                 break;
-            
+
             case 4:
                 inicio();
                 break;
@@ -265,45 +361,43 @@ public class Login extends Servicio implements Serializable {
         }//end of switch
 
     }
-    
 
-    public void CarritoCompras(){
-      
-       
-         PublicadorMensaje sujetoConcreto = new PublicadorMensaje();
-         Scanner in = new Scanner(System.in);
+    public void CarritoCompras() {
+
+        PublicadorMensaje sujetoConcreto = new PublicadorMensaje();
+        Scanner in = new Scanner(System.in);
         System.out.println("1)\t Eliminar Producto");
         System.out.println("2)\t Completar Compra");
         System.out.println("3)\t Regresar");
-                int opc2 = in.nextInt();
-                switch (opc2){
-                    case 1:
-                        System.out.println("Elimina el producto del id escrito");
-                        break;
-                    
-                    case 2:
-                       
-                        System.out.println("Compra completada con exito!");
-                        String nombre;
-                         //Mensaje mensaje = new Mensaje(String m);
-                        System.out.println("Digite su nombre: ");
-                         //m = in.nextShort();
-                         //mensaje.getMessageContent();
-                      
-                        //sujetoConcreto.notificarObservadores(m);
-                        /*actualizar observador para que le envie notificacion al admin de que usuario x realizó
+        int opc2 = in.nextInt();
+        switch (opc2) {
+            case 1:
+                System.out.println("Elimina el producto del id escrito");
+                break;
+
+            case 2:
+
+                System.out.println("Compra completada con exito!");
+                String nombre;
+                //Mensaje mensaje = new Mensaje(String m);
+                System.out.println("Digite su nombre: ");
+            //m = in.nextShort();
+            //mensaje.getMessageContent();
+
+            //sujetoConcreto.notificarObservadores(m);
+            /*actualizar observador para que le envie notificacion al admin de que usuario x realizó
                         un nuevo pedido.
                         Además agregar los datos de los productos y id de usuario a la tabla pedidos
-                        */
-                    case 3:
-                         menuCliente();
-                        break;
-                        default:
+             */
+            case 3:
+                menuCliente();
+                break;
+            default:
                 System.out.println("Opción errónea");
                 break;
-                } 
+        }
     }
-    
+
     public void inicio() {
         String[] opciones = {"Ingresar", "Registrar"};
 
@@ -311,12 +405,12 @@ public class Login extends Servicio implements Serializable {
                 "7Shop",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
         if (x == 1) {
-            
-             RegistroTO regto = new RegistroTO();
-                RegistrarCliente registro = new RegistrarCliente();
-                registro.insert(regto);
-                inicio();
-            
+
+            RegistroTO regto = new RegistroTO();
+            RegistrarCliente registro = new RegistrarCliente();
+            registro.insert(regto);
+            inicio();
+
             //registrarUsuario();
         } else if (x == 0) {
             validacionDatos();

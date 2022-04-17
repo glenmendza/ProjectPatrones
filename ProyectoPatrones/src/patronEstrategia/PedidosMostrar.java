@@ -29,7 +29,7 @@ public class PedidosMostrar extends Servicio implements ComportamientoPedidos{
                 pe.setNumPedido(rs.getInt("NumPedido"));
                 pe.setIdUsuario(rs.getInt("idUsuario"));
                 pe.setIdProducto(rs.getInt("idProducto"));
-                pe.setFecha(rs.getDate("Fecha"));
+                pe.setFecha(rs.getInt("fecha"));
                 
                 listaRetorno.add(pe);
             }

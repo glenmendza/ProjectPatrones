@@ -16,16 +16,16 @@ public class Pedido implements Serializable{
     private int idProducto;
     private int numPedido;
     private int idUsuario;
-    private Date fecha;
-    SimpleDateFormat ft = 
-      new SimpleDateFormat ("dd.MM.yyyy");
+    private int fecha;
+//    SimpleDateFormat ft = 
+//      new SimpleDateFormat ("dd.MM.yyyy");
     
     
     public Pedido(){
      
     }
     
-    public Pedido(int idProducto,int numPedido, int idUsuario,Date fecha)
+    public Pedido(int idProducto,int numPedido, int idUsuario,int fecha)
     {
         this.idProducto=idProducto;
         this.numPedido = numPedido;
@@ -57,11 +57,11 @@ public class Pedido implements Serializable{
         this.idUsuario = idUsuario;
     }
 
-    public Date getFecha() {
+    public int getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(int fecha) {
         this.fecha = fecha;
     }
 
