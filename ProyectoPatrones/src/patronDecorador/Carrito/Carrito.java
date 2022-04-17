@@ -9,12 +9,7 @@ import patronEstrategia.*;
 
 
 public abstract class Carrito extends Servicio{
-    
-public abstract List<Producto> BuscarProducto(int idProducto);
-   
-     
-     
-    
- 
-   
+String precio; 
+public abstract List<Producto> BuscarProducto(int idProducto);  
+public abstract double costo();
 }

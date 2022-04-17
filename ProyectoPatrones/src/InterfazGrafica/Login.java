@@ -19,6 +19,7 @@ import java.time.*;
 public class Login extends Servicio implements Serializable {
 
     CarritoBase carrito = new CarritoBase();
+    PedidosMostrar mostrarPedidos = new PedidosMostrar();
     List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
     static int idProducto = 0;
 
@@ -219,7 +220,7 @@ public class Login extends Servicio implements Serializable {
                 pedido.setIdProducto(rs.getInt("idProducto"));
                 pedido.setNumPedido(rs.getInt("NumPedido"));
                 pedido.setIdUsuario(rs.getInt("idUsuario"));
-                pedido.setFecha(rs.getInt("fecha"));
+                pedido.setMonto(rs.getDouble("monto"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,46 +234,15 @@ public class Login extends Servicio implements Serializable {
 
     }
 
-    public List<Pedido> getPedidos() {
-        Statement stmt = null;
-        ResultSet rs = null;
-        List<Pedido> pedidos = null;
-        
-        try {
-            stmt = super.getConexion().createStatement();
-            String sql = "SELECT idProducto, NumPedido, idUsuario, fecha\n"
-                    + "FROM Pedidos;";
-
-            rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-
-                int idProducto = rs.getInt("IdProducto");
-                int numPedido = rs.getInt("NumPedido");
-                int idUsuario = rs.getInt("idUsuario");
-                int fecha = rs.getInt("fecha");
-
-                Pedido pedido = new Pedido(idProducto,numPedido,idUsuario,fecha);
-                pedidos.add(pedido);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            cerrarResultSet(rs);
-            cerrarStatement(stmt);
-            desconectar();
-        }
-
-        return pedidos;
-    }
+ 
 
     public void gestionarPedidos() {
         Scanner in = new Scanner(System.in);
         PedidosMostrar mostrarPedidos = new PedidosMostrar();
-        mostrarPedidos.Pedidos();
-        Pedido pedido = new Pedido();
+        
+        
 
-// Display del menu para clientes
+// Display del menu para gestion de pedidos de admin
         System.out.println("========= Gestión de pedidos =========");
         System.out.println("1)\t Ver lista de pedidos");
         System.out.println("2)\t Eliminar un pedido");
@@ -288,7 +258,13 @@ public class Login extends Servicio implements Serializable {
         int opc = in.nextInt();
         switch (opc) {
             case 1:
-                    getPedidos();
+               
+                   List<Pedido> listadoPedido = mostrarPedidos.Pedidos();
+        System.out.println("====== Lista de Productos =======");
+        for (Pedido pedido : listadoPedido) {
+            System.out.println(pedido.getNumPedido() + " | " + pedido.getIdUsuario() + " | " + pedido.getIdProducto() + " | " + pedido.getMonto());
+        }
+                   gestionarPedidos();
             case 2:
 
             case 3:
@@ -362,10 +338,12 @@ public class Login extends Servicio implements Serializable {
 
     }
 
-    public void CarritoCompras() {
-
+    public boolean CarritoCompras() {
+        boolean confirmacion=false;
         PublicadorMensaje sujetoConcreto = new PublicadorMensaje();
         Scanner in = new Scanner(System.in);
+          Random rand = new Random();
+                    int upperbound = 10000;
         System.out.println("1)\t Eliminar Producto");
         System.out.println("2)\t Completar Compra");
         System.out.println("3)\t Regresar");
@@ -376,11 +354,16 @@ public class Login extends Servicio implements Serializable {
                 break;
 
             case 2:
-
+                System.out.println("Monto total: "+montoTotal());
                 System.out.println("Compra completada con exito!");
-                String nombre;
+                confirmacion=true;
+                 agregarPedido();
+                
+               
+                
+                
                 //Mensaje mensaje = new Mensaje(String m);
-                System.out.println("Digite su nombre: ");
+               
             //m = in.nextShort();
             //mensaje.getMessageContent();
 
@@ -396,8 +379,54 @@ public class Login extends Servicio implements Serializable {
                 System.out.println("Opción errónea");
                 break;
         }
+        return confirmacion;
+    }
+    
+    public void agregarPedido(){
+        PreparedStatement preparedStatement = null;
+
+
+        try {
+            Random rand = new Random();
+                    int upperbound = 10000;
+                    
+            conectar();
+           
+                   for (Producto productoC : listaCarrito) {
+                    productoC.getIdProducto(); 
+                            productoC.getPrecio() ;      
+                
+                  
+                   
+            String sql = "INSERT INTO Pedidos(NumPedido, idUsuario, idProducto,monto) VALUES(?,?,?,?);";
+            preparedStatement = conexion.prepareStatement(sql);
+            preparedStatement.setInt(1, rand.nextInt(upperbound));
+            preparedStatement.setString(2, usuario);
+            preparedStatement.setInt(3,productoC.getIdProducto());
+            preparedStatement.setDouble(4,productoC.getPrecio());
+            preparedStatement.executeUpdate();
+        }
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            cerrarPreparedStatement(preparedStatement);
+            desconectar();
+        }
+        listaCarrito.clear();//va a vaciar el carrito cuando se complete la compra
+        menuCliente(); 
     }
 
+    public double montoTotal(){
+        double suma=0.0;
+       CarritoBase basePrecio = new CarritoBase();
+        for (Producto productoC : listaCarrito)  {            
+        suma+=basePrecio.costo()+ productoC.getPrecio();  
+        }
+        return suma;
+    }
+    
     public void inicio() {
         String[] opciones = {"Ingresar", "Registrar"};
 

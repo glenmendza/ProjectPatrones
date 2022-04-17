@@ -39,5 +39,10 @@ public class CarritoBase extends Carrito {
         }
         return listaRetorno;
     }
+    
+    public double costo()
+    {
+        return 0.0;
+    }
 
 }
