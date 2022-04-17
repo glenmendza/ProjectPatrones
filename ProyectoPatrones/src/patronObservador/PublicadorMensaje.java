@@ -7,6 +7,8 @@ package patronObservador;
 import java.util.ArrayList;
 import java.util.List;
  
+
+//SUJETO CONCRETO
 public class PublicadorMensaje implements Sujeto {
      
     private List<Observador> observadores = new ArrayList<>();

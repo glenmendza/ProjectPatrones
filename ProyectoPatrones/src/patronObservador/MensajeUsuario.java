@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package patronObservador;
+
+//Observador Concreto
 public class MensajeUsuario implements Observador 
 {
     @Override

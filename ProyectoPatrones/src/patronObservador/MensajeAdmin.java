@@ -8,6 +8,8 @@ package patronObservador;
  *
  * @author haziellopez
  */
+
+//Observador Concreto
 public class MensajeAdmin implements Observador{
  
     @Override

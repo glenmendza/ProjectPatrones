@@ -8,6 +8,8 @@ package patronObservador;
  *
  * @author haziellopez
  */
+
+//Observador
 public interface Observador 
 {
     public void update(Mensaje m);

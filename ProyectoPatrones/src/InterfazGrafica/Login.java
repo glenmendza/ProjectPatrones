@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 import patronEstrategia.*;
 import patronDecorador.Carrito.*;
+import patronObservador.*;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
 //import java.util.List;
@@ -298,9 +299,13 @@ public class Login extends Servicio implements Serializable {
     
 
     public void CarritoCompras(){
+      
+       
+         PublicadorMensaje sujetoConcreto = new PublicadorMensaje();
          Scanner in = new Scanner(System.in);
         System.out.println("1)\t Eliminar Producto");
-        System.out.println("2)\t Regresar");
+        System.out.println("2)\t Completar Compra");
+        System.out.println("3)\t Regresar");
                 int opc2 = in.nextInt();
                 switch (opc2){
                     case 1:
@@ -308,8 +313,22 @@ public class Login extends Servicio implements Serializable {
                         break;
                     
                     case 2:
-                        menuCliente();
-                        
+                       
+                        System.out.println("Compra completada con exito!");
+                        String nombre;
+                         Mensaje mensaje = new Mensaje(String m);
+                        System.out.println("Digite su nombre: ");
+                       m = in.nextShort();
+                         mensaje.getMessageContent();
+                      
+                        sujetoConcreto.notificarObservadores(m);
+                        /*actualizar observador para que le envie notificacion al admin de que usuario x realizó
+                        un nuevo pedido.
+                        Además agregar los datos de los productos y id de usuario a la tabla pedidos
+                        */
+                    case 3:
+                         menuCliente();
+                        break;
                         default:
                 System.out.println("Opción errónea");
                 break;

@@ -8,6 +8,8 @@ package patronObservador;
  *
  * @author haziellopez
  */
+
+//sujeto
 public interface Sujeto {
 
     public void registrarObservador(Observador o);
