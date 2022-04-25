@@ -16,7 +16,7 @@ public class Tester {
     public static void main(String[] args) {
         Usuario admin = new UsuarioAdmin();
         ProductosVer verProductos = new ProductosVer();
-        
+        UsuarioCliente cliente = new UsuarioCliente();
         
         
         //Observador
@@ -47,6 +47,13 @@ public class Tester {
 
         //registro de un nuevo cliente
         //regcliente.insert(regto);
+        
+        //Implementando el observador
+       
+        
+        
+        
+        
         Login log = new Login();
         log.inicio();
 

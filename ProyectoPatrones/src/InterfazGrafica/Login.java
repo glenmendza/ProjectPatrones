@@ -22,7 +22,8 @@ public class Login extends Servicio implements Serializable {
     CarritoBase carrito = new CarritoBase();
     PedidosMostrar mostrarPedidos = new PedidosMostrar();
     List<Producto> listaCarrito = carrito.BuscarProducto(idProducto);
-    
+      SujetoConcreto sujeto = new SujetoConcreto();
+        UsuarioTO observador = new UsuarioTO();
     ProductosModificar modificarProductos = new ProductosModificar();
 
     static int idProducto = 0;
@@ -31,9 +32,7 @@ public class Login extends Servicio implements Serializable {
     public String userlevel;
     
     Pedido pedido = new Pedido();
-   //Observador
-    PublicadorMensaje pMensaje = new PublicadorMensaje();
-    DisplayCondicionesActuales dCondiciones = new DisplayCondicionesActuales(pMensaje);
+
     
     
     public void ingresar() {
@@ -56,6 +55,7 @@ public class Login extends Servicio implements Serializable {
                     // Verificar si es admin o cliente
 
                     if (tempTipo.equals("1")) {
+                         
                         JOptionPane.showMessageDialog(null, "Bienvenido " + usuario + ". Ingresó como administrador! ", "7Shop", JOptionPane.INFORMATION_MESSAGE);
                         menuAdmin();
                     } else if (tempTipo.equals("2")) {
@@ -90,12 +90,13 @@ public class Login extends Servicio implements Serializable {
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
         System.out.println("========= Menu Administrativo =========");
+        
         System.out.println("1)\t Gestionar productos");
         System.out.println("2)\t Agregar usuario administrador");
         System.out.println("3)\t Gestionar pedidos");
         System.out.println("4)\t Cerrar sesión");
         System.out.println("5)\t Salir del sistema");
-        System.out.println(dCondiciones);
+     
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -111,9 +112,11 @@ public class Login extends Servicio implements Serializable {
                 RegistroTO regto = new RegistroTO();
                 RegistrarAdmin registro = new RegistrarAdmin();
                 registro.insert(regto);
+                
                 menuAdmin();
                 break;
             case 3:
+                
                 gestionarPedidos();
                 break;
             case 4:
@@ -254,8 +257,8 @@ public class Login extends Servicio implements Serializable {
         System.out.println("========= Gestión de pedidos =========");
         System.out.println("1)\t Ver lista de pedidos");
         System.out.println("2)\t Eliminar un pedido");
-        System.out.println("3)\t Actualizar un pedido");
-        System.out.println("4)\t Volver al menú");
+        System.out.println("3)\t Volver al menú");
+       
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -275,9 +278,9 @@ public class Login extends Servicio implements Serializable {
                    gestionarPedidos();
             case 2:
 
-            case 3:
+         break;
 
-            case 4:
+            case 3:
                 inicio();
                 break;
             default:
@@ -362,13 +365,16 @@ public class Login extends Servicio implements Serializable {
                 break;
 
             case 2:
+        //Aqui se hace la implementacion del patron observador        
+               
+        
                 System.out.println("Monto total: "+montoTotal());
                 System.out.println("Compra completada con exito!");
-                pMensaje.setEstados("Nuevo pedido realizado");
-                pMensaje.notificarObservadores();
-                confirmacion=true;
+         
+              
                  agregarPedido();
                 
+       sujeto.subirEstado("Nuevo pedido realizado!");
                
                 
                 

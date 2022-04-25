@@ -4,19 +4,30 @@
  */
 package patronEstrategia;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import patronObservador.*;
+
 /**
  *
  * @author haziellopez
  */
-public class UsuarioAdmin extends Usuario {
+public class UsuarioAdmin extends Usuario{
+    
+    private UsuarioCliente cliente = new UsuarioCliente();
+    
+    
+    
     public UsuarioAdmin() {
         comportamientoCarrito = new CarritoNoMostrar();
         comportamientoPedidos = new PedidosMostrar();
         comportamientoProductos = new ProductosModificar();
         comportamientoRegistro = new RegistrarAdmin();
     }
+    
 
-    public void display() {
-        System.out.println("Este es un usuario de tipo administrador");
-    }
+    
+  
 }

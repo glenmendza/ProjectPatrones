@@ -49,5 +49,5 @@ public abstract class Usuario {
         comportamientoRegistro.Registro();
     }
     
-    public abstract void display();
+
 }

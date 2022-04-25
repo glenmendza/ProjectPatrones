@@ -4,20 +4,27 @@
  */
 package patronEstrategia;
 
+import patronObservador.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author haziellopez
  */
 public class UsuarioCliente extends Usuario {
-
+    
+private String nombreUsuario;
+private List<UsuarioAdmin> administradores = new ArrayList<>();//En esta lista se van a almacenar los observadores, o sea la lista de administradores que van a recibir la notificacion
     public UsuarioCliente() {
         comportamientoCarrito = new CarritoMostrar();
         comportamientoPedidos = new PedidosNoMostrar();
         comportamientoProductos = new ProductosVer();
         comportamientoRegistro = new RegistrarCliente();
+       
     }
 
-    public void display() {
-        System.out.println("Este es un usuario de tipo cliente");
-    }
+  
+    
+    
 }

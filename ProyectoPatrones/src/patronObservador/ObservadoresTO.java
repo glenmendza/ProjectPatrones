@@ -3,23 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package patronEstrategia;
+package patronObservador;
 
-import java.io.Serializable;
-import patronObservador.*;
 /**
  *
- * @author glenm
+ * @author hazie
  */
-public class UsuarioTO implements Serializable{
-    private int userId;
+public class ObservadoresTO {
+      private int userId;
     private String userName;
     private String userLastName;
     private String userEmail;
     private String userPassword;
     private int userLevel;
+      private SujetoConcreto Sujeto;
 
-    public UsuarioTO(int userId, String userName, String userLastName, String userEmail, String userPassword, int userLevel) {
+    public ObservadoresTO(int userId, String userName, String userLastName, String userEmail, String userPassword, int userLevel) {
         this.userId = userId;
         this.userName = userName;
         this.userLastName = userLastName;
@@ -27,11 +26,9 @@ public class UsuarioTO implements Serializable{
         this.userPassword = userPassword;
         this.userLevel = userLevel;
     }
-    
-   
-
-    public UsuarioTO() {
-    }
+   public ObservadoresTO(){
+       
+   }
 
     public int getUserId() {
         return userId;
@@ -79,6 +76,17 @@ public class UsuarioTO implements Serializable{
 
     public void setUserLevel(int userLevel) {
         this.userLevel = userLevel;
+    }
+    
+        public void actualizarEstado(){
+        System.out.println("Se ha realizado un nuevo pedido por el usuario: ");
+    }
+    
+    
+    //Al asignarsele un sujeto se va a actualizar el nombre de este
+    public void sujetoAsignado(SujetoConcreto sujeto)
+    {
+        Sujeto = sujeto;
     }
     
     
