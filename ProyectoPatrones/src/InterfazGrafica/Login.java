@@ -25,6 +25,7 @@ public class Login extends Servicio implements Serializable {
       SujetoConcreto sujeto = new SujetoConcreto();
         UsuarioTO observador = new UsuarioTO();
     ProductosModificar modificarProductos = new ProductosModificar();
+    
 
     static int idProducto = 0;
     public String usuario;
@@ -163,13 +164,14 @@ public class Login extends Servicio implements Serializable {
                     int id = in2.nextInt();
                     modificarProductos.eliminarProducto(id);
 
-                    break;
+                   
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
                 } finally {
                     JOptionPane.showMessageDialog(null, "Se ha eliminado  producto con éxito", "7Shop", JOptionPane.INFORMATION_MESSAGE);
                     gestionarProductos();
                 }
+                 break;
             case 2:
                 Producto producto = new Producto();
 
@@ -271,13 +273,25 @@ public class Login extends Servicio implements Serializable {
             case 1:
                
                    List<Pedido> listadoPedido = mostrarPedidos.Pedidos();
-        System.out.println("====== Lista de Productos =======");
+        System.out.println("====== Lista de Pedidos =======");
+         System.out.println("idPedido   idUsuario   idProducto    Costo");
         for (Pedido pedido : listadoPedido) {
-            System.out.println(pedido.getNumPedido() + " | " + pedido.getIdUsuario() + " | " + pedido.getIdProducto() + " | " + pedido.getMonto());
+            System.out.println(pedido.getNumPedido() + "       | " + pedido.getIdUsuario() + "         | " + pedido.getIdProducto() + "          | " + pedido.getMonto());
         }
                    gestionarPedidos();
-            case 2:
-
+         case 2:
+           try {
+                    System.out.println("Digite el ID del pedido que desea eliminar: ");
+                    int id = in.nextInt();
+                   mostrarPedidos.eliminarPedido(id);
+                   
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado el pedido con éxito", "7Shop", JOptionPane.INFORMATION_MESSAGE);
+                    
+                }
+           gestionarPedidos();
          break;
 
             case 3:
@@ -370,7 +384,7 @@ public class Login extends Servicio implements Serializable {
         
                 System.out.println("Monto total: "+montoTotal());
                 System.out.println("Compra completada con exito!");
-         
+                
               
                  agregarPedido();
                 

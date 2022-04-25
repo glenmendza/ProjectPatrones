@@ -72,10 +72,7 @@ public class ProductosModificar extends Servicio implements ComportamientoProduc
 
     }
     
-    public void eliminarProducto(int id){
-         
-        
-       
+    public void eliminarProducto(int id){      
           PreparedStatement st = null;
         try {
             this.conectar();

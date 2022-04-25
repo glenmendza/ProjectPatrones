@@ -4,6 +4,7 @@
  */
 package patronEstrategia;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -43,6 +44,23 @@ public class PedidosMostrar extends Servicio implements ComportamientoPedidos{
         }
              
         return listaRetorno;
+    }
+         
+         public void eliminarPedido(int id){      
+          PreparedStatement st = null;
+        try {
+            this.conectar();
+            st = this.getConexion().prepareStatement("DELETE FROM Pedidos WHERE NumPedido = ?");
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarPreparedStatement(st);
+            desconectar();
+        }
+        
+       
     }
    
     }
