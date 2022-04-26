@@ -34,7 +34,9 @@ public class Login extends Servicio implements Serializable {
     public String userlevel;
     
     Pedido pedido = new Pedido();
-
+    SujetoConcreto obs = new SujetoConcreto();
+    
+ 
     
     
     public void ingresar() {
@@ -63,6 +65,7 @@ public class Login extends Servicio implements Serializable {
                     } else if (tempTipo.equals("2")) {
                         JOptionPane.showMessageDialog(null, "Bienvenido " + usuario + ". Ingresó como cliente! ", "7Shop", JOptionPane.INFORMATION_MESSAGE);
                         menuCliente();
+                       
                     }
 
                 } else {
@@ -89,6 +92,8 @@ public class Login extends Servicio implements Serializable {
     }
 
     public void menuAdmin() {
+        obs.Pedidos();
+        obs.notificarPedido();
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
         System.out.println("========= Menu Administrativo =========");
@@ -311,6 +316,7 @@ public class Login extends Servicio implements Serializable {
 
     public void menuCliente() {
 
+        
         Scanner in = new Scanner(System.in);
         ProductosVer verProductos = new ProductosVer();
 
@@ -370,6 +376,7 @@ public class Login extends Servicio implements Serializable {
     public boolean CarritoCompras() {
         boolean confirmacion=false;
         int input;
+        
         Scanner in = new Scanner(System.in);
         Scanner in2 = new Scanner(System.in);
           Random rand = new Random();
@@ -398,6 +405,8 @@ public class Login extends Servicio implements Serializable {
         
                 System.out.println("Monto total: "+montoTotal());
                 System.out.println("Compra completada con exito!");
+                
+                        
                 
               
                  agregarPedido();

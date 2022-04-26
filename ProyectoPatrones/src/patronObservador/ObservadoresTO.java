@@ -1,22 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package patronObservador;
 
-/**
- *
- * @author hazie
- */
+package patronObservador;
+import InterfazGrafica.*;
+import patronEstrategia.*;
+
+
 public class ObservadoresTO {
-      private int userId;
+    private int userId;
     private String userName;
     private String userLastName;
     private String userEmail;
     private String userPassword;
     private int userLevel;
-      private SujetoConcreto Sujeto;
+    private SujetoConcreto Sujeto;
+    private Pedido pedido;
+    
+    Login log = new Login();
+      
 
     public ObservadoresTO(int userId, String userName, String userLastName, String userEmail, String userPassword, int userLevel) {
         this.userId = userId;
@@ -78,8 +77,8 @@ public class ObservadoresTO {
         this.userLevel = userLevel;
     }
     
-        public void actualizarEstado(){
-        System.out.println("Se ha realizado un nuevo pedido por el usuario: ");
+    public void actualizarEstado(){
+        System.out.println("Se ha realizado un nuevo pedido por el usuario: " + userId);
     }
     
     

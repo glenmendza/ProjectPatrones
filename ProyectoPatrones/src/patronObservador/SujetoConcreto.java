@@ -18,7 +18,9 @@ import patronEstrategia.*;
 public class SujetoConcreto extends Servicio{
      
     private List<ObservadoresTO> listaRetorno = new ArrayList<>();
-     String titulo;
+    private List<Pedido> listaPedidos = new ArrayList<>();
+    private PedidosMostrar mostrarPedidos = new PedidosMostrar();
+    private String titulo;
  
      //Este es el metodo equivalente a asignar un observador. Todos los admin son observadores.
     public List<ObservadoresTO> Observadores() {
@@ -53,19 +55,60 @@ public class SujetoConcreto extends Servicio{
         }
         return listaRetorno;
     }
-     
+ 
+    public List<Pedido> Pedidos() {
+        Statement stmt = null;
+        ResultSet rs = null;
+       
+
+        try {
+
+            stmt = super.getConexion().createStatement();
+            String sql = "SELECT * FROM Pedidos ";
+
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                Pedido p = new Pedido();
+                p.setNumPedido(rs.getInt("NumPedido"));
+                p.setIdUsuario(rs.getInt("idUsuario"));
+                p.setIdProducto(rs.getInt("idProducto"));
+                p.setMonto(rs.getDouble("monto"));
+                listaPedidos.add(p);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cerrarResultSet(rs);
+            cerrarStatement(stmt);
+            desconectar();
+        }
+        return listaPedidos;
+    }
+    
  
 
-    public void notificarObservadores(){
-    for(ObservadoresTO observadores : listaRetorno)
-    {
-        observadores.actualizarEstado();
-    }
-}
+   // public void notificarObservadores(){
+   // for(ObservadoresTO observadores : listaRetorno)
+  //  {
+       // observadores.actualizarEstado();
+                
+  //  }
+//}
+    
+    
+   
+     
+     public void notificarPedido(){
+     for(Pedido pedidos : listaPedidos){
+         pedidos.actualizarEstado();
+     }
+     }
     
     public void subirEstado(String titulo){
         this.titulo=titulo;
-        notificarObservadores();
+       // notificarObservadores();
     }
 
  
