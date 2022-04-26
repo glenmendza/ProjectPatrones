@@ -10,6 +10,7 @@ import javax.swing.*;
 import patronObservador.*;
 import InterfazGrafica.*;
 import patronObservador.*;
+import patronFabrica.*;
 
 public class Tester {
 
@@ -51,6 +52,9 @@ public class Tester {
         //Implementando el observador
        
         
+        TiendaVirtual tienda = new SneakersNewBalanceEL();
+        CrearSneaker crear = new CrearSneaker(tienda);
+        crear.unirPartes();
         
         
         

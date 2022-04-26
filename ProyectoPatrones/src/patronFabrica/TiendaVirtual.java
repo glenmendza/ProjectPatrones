@@ -9,7 +9,7 @@ package patronFabrica;
  *
  * @author haziellopez
  */
-abstract class TiendaVirtual {
+public abstract class TiendaVirtual {
     public abstract Cordones CrearCordones();
     public abstract Plantillas CrearPlantillas();
     public abstract Suelas CrearSuelas();

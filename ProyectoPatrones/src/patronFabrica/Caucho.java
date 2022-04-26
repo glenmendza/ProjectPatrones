@@ -9,7 +9,8 @@ package patronFabrica;
  * @author haziellopez
  */
 public class Caucho extends Suelas{
+    String Caucho="caucho";
     public void poner(){
-        
+       System.out.println("Se pone la suela de "+ this.Caucho);   
     }
 }

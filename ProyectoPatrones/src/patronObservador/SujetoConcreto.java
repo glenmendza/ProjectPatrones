@@ -89,26 +89,17 @@ public class SujetoConcreto extends Servicio{
     
  
 
-   // public void notificarObservadores(){
-   // for(ObservadoresTO observadores : listaRetorno)
-  //  {
-       // observadores.actualizarEstado();
+    public void notificarObservadores(){
+   for(ObservadoresTO observadores : listaRetorno)
+   {
+        observadores.actualizarEstado();
                 
-  //  }
-//}
-    
-    
-   
-     
-     public void notificarPedido(){
-     for(Pedido pedidos : listaPedidos){
-         pedidos.actualizarEstado();
-     }
-     }
-    
+   }
+}
+ 
     public void subirEstado(String titulo){
         this.titulo=titulo;
-       // notificarObservadores();
+       notificarObservadores();
     }
 
  

@@ -9,7 +9,8 @@ package patronFabrica;
  * @author haziellopez
  */
 public class Acolchonadas extends Plantillas{
+    String Acolchonadas = "acolchonadas";
     public void colocar(){
-        
+        System.out.println("Se colocan las plantillas "+ this.Acolchonadas); 
     }
 }

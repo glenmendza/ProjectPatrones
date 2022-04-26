@@ -8,8 +8,10 @@ import javax.swing.*;
 import patronEstrategia.*;
 import patronDecorador.Carrito.*;
 import patronObservador.*;
+import patronFabrica.*;
 import java.time.*;
-import patronObservador.*;
+
+
 //import java.sql.ResultSet;
 //import java.sql.Statement;
 //import java.util.List;
@@ -17,7 +19,7 @@ import patronObservador.*;
 //import java.util.Random;
 //import java.sql.PreparedStatement;
 
-public class Login extends Servicio implements Serializable {
+public class Login extends Servicio implements Serializable,Observador {
 
     CarritoBase carrito = new CarritoBase();
     PedidosMostrar mostrarPedidos = new PedidosMostrar();
@@ -32,6 +34,8 @@ public class Login extends Servicio implements Serializable {
     public String usuario;
     public String contrasenna;
     public String userlevel;
+    private SujetoConcreto Sujeto;
+     private Pedido ultimaPosicion = mostrarPedidos.Pedidos().get(mostrarPedidos.Pedidos().size()-1);
     
     Pedido pedido = new Pedido();
     SujetoConcreto obs = new SujetoConcreto();
@@ -91,9 +95,22 @@ public class Login extends Servicio implements Serializable {
         }
     }
 
+         public void actualizarEstado(){
+        System.out.println("Se ha realizado un nuevo pedido por el usuario: " + ultimaPosicion);
+        }
+         
+           //Al asignarsele un sujeto se va a actualizar el nombre de este
+    public void sujetoAsignado(SujetoConcreto sujeto)
+    {
+        Sujeto = sujeto;
+    }
+    
     public void menuAdmin() {
         obs.Pedidos();
-        obs.notificarPedido();
+        obs.subirEstado("Actualizado");
+   
+    
+
         Scanner in = new Scanner(System.in);
         // Display del menu administrativo
         System.out.println("========= Menu Administrativo =========");
@@ -325,7 +342,8 @@ public class Login extends Servicio implements Serializable {
         System.out.println("1)\t Ver lista de productos");
         System.out.println("2)\t Agregar un producto al carrito");
         System.out.println("3)\t Ver carrito de compras");
-        System.out.println("4)\t Salir del sistema");
+        System.out.println("4)\t Sneaker personalizado");
+        System.out.println("5)\t Salir del sistema");
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -364,7 +382,13 @@ public class Login extends Servicio implements Serializable {
                 break;
 
             case 4:
-                inicio();
+               TiendaVirtual tienda = new SneakerBase();
+               CrearSneaker crear = new CrearSneaker(tienda);
+               crear.unirPartes();
+                break;
+                
+            case 5:
+                 inicio();
                 break;
             default:
                 System.out.println("Opción errónea");

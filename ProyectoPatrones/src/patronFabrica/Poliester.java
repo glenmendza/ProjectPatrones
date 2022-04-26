@@ -9,7 +9,8 @@ package patronFabrica;
  * @author haziellopez
  */
 public class Poliester extends Cordones{
+    String Poliester = "poliester";
     public void agregar(){
-        
+          System.out.println("Se agregan los cordones "+ this.Poliester); 
     }
 }

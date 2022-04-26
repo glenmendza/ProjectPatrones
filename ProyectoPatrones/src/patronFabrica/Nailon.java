@@ -9,7 +9,8 @@ package patronFabrica;
  * @author haziellopez
  */
 public class Nailon extends Cordones{
+    String Nailon="Nailon";
     public void agregar(){
-        
+         System.out.println("Se agregan los cordones "+ this.Nailon); 
     }
 }

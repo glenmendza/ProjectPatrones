@@ -13,7 +13,8 @@ public class ObservadoresTO {
     private int userLevel;
     private SujetoConcreto Sujeto;
     private Pedido pedido;
-    
+    private PedidosMostrar pedidos;
+   
     Login log = new Login();
       
 
@@ -77,16 +78,7 @@ public class ObservadoresTO {
         this.userLevel = userLevel;
     }
     
-    public void actualizarEstado(){
-        System.out.println("Se ha realizado un nuevo pedido por el usuario: " + userId);
-    }
     
-    
-    //Al asignarsele un sujeto se va a actualizar el nombre de este
-    public void sujetoAsignado(SujetoConcreto sujeto)
-    {
-        Sujeto = sujeto;
-    }
     
     
     

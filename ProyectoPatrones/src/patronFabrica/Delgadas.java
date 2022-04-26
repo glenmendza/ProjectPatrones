@@ -9,7 +9,8 @@ package patronFabrica;
  * @author haziellopez
  */
 public class Delgadas extends Plantillas{
+    String Delgadas = "delgadas";
     public void colocar(){
-        
+       System.out.println("Se colocan las plantillas "+ this.Delgadas); 
     }
 }

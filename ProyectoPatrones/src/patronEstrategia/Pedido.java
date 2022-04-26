@@ -65,10 +65,7 @@ public class Pedido implements Serializable{
         this.monto = monto;
     }
 
-    
-  public void actualizarEstado(){
-    System.out.println("Se ha realizado un nuevo pedido por el usuario: " + idUsuario);
-    }
+
     
     
    
