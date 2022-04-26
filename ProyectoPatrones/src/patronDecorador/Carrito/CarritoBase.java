@@ -43,8 +43,8 @@ public class CarritoBase extends Carrito {
     public void eliminarProductoCarrito(int idProducto)
     {     
          Producto productoC = new Producto();
-         productoC.getIdProducto();
-                    listaRetorno.remove(productoC.getIdProducto());
+         idProducto = productoC.getIdProducto();
+                    listaRetorno.remove(idProducto);
                   
     }
     
