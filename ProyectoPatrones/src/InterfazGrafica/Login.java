@@ -436,7 +436,7 @@ public class Login extends Servicio implements Serializable {
             preparedStatement.setInt(1, rand.nextInt(upperbound));
             preparedStatement.setString(2, usuario);
             preparedStatement.setInt(3,productoC.getIdProducto());
-            preparedStatement.setDouble(4,productoC.getPrecio());
+            preparedStatement.setDouble(4,productoC.getPrecio()*cantProducto);
             preparedStatement.executeUpdate();
         }
              
