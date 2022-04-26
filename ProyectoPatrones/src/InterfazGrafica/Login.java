@@ -258,6 +258,7 @@ public class Login extends Servicio implements Serializable {
 
 // Display del menu para gestion de pedidos de admin
         System.out.println("========= Gestión de pedidos =========");
+        sujeto.subirEstado("Nuevo pedido realizado");
         System.out.println("1)\t Ver lista de pedidos");
         System.out.println("2)\t Eliminar un pedido");
         System.out.println("3)\t Volver al menú");
@@ -368,8 +369,9 @@ public class Login extends Servicio implements Serializable {
 
     public boolean CarritoCompras() {
         boolean confirmacion=false;
-        
+        int input;
         Scanner in = new Scanner(System.in);
+        Scanner in2 = new Scanner(System.in);
           Random rand = new Random();
                     int upperbound = 10000;
         System.out.println("1)\t Eliminar Producto");
@@ -378,7 +380,16 @@ public class Login extends Servicio implements Serializable {
         int opc2 = in.nextInt();
         switch (opc2) {
             case 1:
-                System.out.println("Elimina el producto del id escrito");
+                System.out.println("Digite el id del producto en el carrito que desea eliminar: ");
+                input=in2.nextInt();
+                try{
+                carrito.eliminarProductoCarrito(input);
+                    System.out.println("Producto eliminado");
+                } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error", "7Shop", JOptionPane.ERROR_MESSAGE);
+        }
+                CarritoCompras();
                 break;
 
             case 2:
@@ -391,7 +402,7 @@ public class Login extends Servicio implements Serializable {
               
                  agregarPedido();
                 
-       sujeto.subirEstado("Nuevo pedido realizado!");
+      
                
                 
                 

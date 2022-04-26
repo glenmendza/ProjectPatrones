@@ -40,6 +40,14 @@ public class CarritoBase extends Carrito {
         return listaRetorno;
     }
     
+    public void eliminarProductoCarrito(int idProducto)
+    {     
+         Producto productoC = new Producto();
+         productoC.getIdProducto();
+                    listaRetorno.remove(productoC.getIdProducto());
+                  
+    }
+    
     public double costo()
     {
         return 0.0;

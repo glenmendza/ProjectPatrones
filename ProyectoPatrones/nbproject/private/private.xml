@@ -12,14 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronDecorador/Carrito/CarritoBase.java</file>
             <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/InterfazGrafica/Login.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioAdmin.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioCliente.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Usuario.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronObservador/Observador.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/UsuarioTO.java</file>
+            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronObservador/Observadores.java</file>
             <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronEstrategia/Tester.java</file>
-            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronObservador/Sujeto.java</file>
+            <file>file:/C:/Users/hazie/Documents/GitHub/ProjectPatrones/ProyectoPatrones/src/patronObservador/ObservadoresTO.java</file>
         </group>
     </open-files>
 </project-private>
