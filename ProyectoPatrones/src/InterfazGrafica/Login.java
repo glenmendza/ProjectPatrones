@@ -28,6 +28,7 @@ public class Login extends Servicio implements Serializable {
     
 
     static int idProducto = 0;
+    static int cantProducto = 0;
     public String usuario;
     public String contrasenna;
     public String userlevel;
@@ -337,6 +338,8 @@ public class Login extends Servicio implements Serializable {
 
                 System.out.println("Digite el id del producto que desea agregar: ");
                 idProducto = in.nextInt();
+                System.out.println("Digite la cantidad que desea agregar al carrito: ");
+                cantProducto = in.nextInt();
 
                 carrito.BuscarProducto(idProducto);
                 System.out.println("Producto agregado al carrito");
@@ -347,7 +350,7 @@ public class Login extends Servicio implements Serializable {
 
                 System.out.println("========= Carrito de compras =========");
                 for (Producto productoC : listaCarrito) {
-                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + productoC.getPrecio());
+                    System.out.println(productoC.getIdProducto() + " | " + productoC.getNombre() + " | " + productoC.getDescripcion() + " | " + cantProducto + " | " + productoC.getPrecio()*cantProducto);
                 }
                 CarritoCompras();
                 //menuCliente();
@@ -452,7 +455,7 @@ public class Login extends Servicio implements Serializable {
         double suma=0.0;
        CarritoBase basePrecio = new CarritoBase();
         for (Producto productoC : listaCarrito)  {            
-        suma+=basePrecio.costo()+ productoC.getPrecio();  
+        suma+=basePrecio.costo()+ productoC.getPrecio()*cantProducto;  
         }
         return suma;
     }
