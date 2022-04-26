@@ -52,9 +52,7 @@ public class Tester {
         //Implementando el observador
        
         
-        TiendaVirtual tienda = new SneakersNewBalanceEL();
-        CrearSneaker crear = new CrearSneaker(tienda);
-        crear.unirPartes();
+      
         
         
         

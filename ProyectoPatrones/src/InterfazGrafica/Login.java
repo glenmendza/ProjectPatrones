@@ -342,7 +342,7 @@ public class Login extends Servicio implements Serializable,Observador {
         System.out.println("1)\t Ver lista de productos");
         System.out.println("2)\t Agregar un producto al carrito");
         System.out.println("3)\t Ver carrito de compras");
-        System.out.println("4)\t Sneaker personalizado");
+        System.out.println("4)\t Sneaker de la temporada");
         System.out.println("5)\t Salir del sistema");
 
         System.out.println("Ingrese la opción que desea:");
@@ -382,9 +382,12 @@ public class Login extends Servicio implements Serializable,Observador {
                 break;
 
             case 4:
-               TiendaVirtual tienda = new SneakerBase();
-               CrearSneaker crear = new CrearSneaker(tienda);
-               crear.unirPartes();
+              
+        TiendaVirtual sneakersNewBalance = new SneakersNewBalanceEL();
+        CrearSneaker crear = new CrearSneaker(sneakersNewBalance);
+        crear.unirPartes();
+                
+                
                 break;
                 
             case 5:
@@ -395,6 +398,32 @@ public class Login extends Servicio implements Serializable,Observador {
                 break;
         }//end of switch
 
+    }
+    
+    public void SeleccionSneakers(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Elija sus sneakers personalizados:\n 1)Sneakers New Balance Edicion Limitada\n 2) Sneakers Nike Edicion Limitada");
+       int seleccion = in.nextInt();
+        
+         int opc = in.nextInt();
+        switch (opc) {
+            case 1:
+       TiendaVirtual sneakersNewBalance = new SneakersNewBalanceEL();
+        CrearSneaker crear = new CrearSneaker(sneakersNewBalance);
+        crear.unirPartes();
+        
+                break;
+
+            case 2:
+ TiendaVirtual sneakersNike = new SneakersNikeEL();
+        CrearSneaker crear2 = new CrearSneaker(sneakersNike);
+        crear2.unirPartes();
+         menuCliente();
+         break;
+            default:
+                System.out.println("Opción errónea");
+                break;
+        }//end of switch
     }
 
     public boolean CarritoCompras() {
