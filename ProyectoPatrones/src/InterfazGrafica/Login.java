@@ -342,8 +342,9 @@ public class Login extends Servicio implements Serializable,Observador {
         System.out.println("1)\t Ver lista de productos");
         System.out.println("2)\t Agregar un producto al carrito");
         System.out.println("3)\t Ver carrito de compras");
-        System.out.println("4)\t Sneaker de la temporada");
-        System.out.println("5)\t Salir del sistema");
+        System.out.println("4)\t Crear sneaker de la temporada");
+        System.out.println("5)\t Crear sneaker edicion limitada");
+        System.out.println("6)\t Salir del sistema");
 
         System.out.println("Ingrese la opción que desea:");
 
@@ -385,12 +386,20 @@ public class Login extends Servicio implements Serializable,Observador {
               
         TiendaVirtual sneakersNewBalance = new SneakersNewBalanceEL();
         CrearSneaker crear = new CrearSneaker(sneakersNewBalance);
+                System.out.println("============= Sneakers de la temporada: Sneakers New Balance ===================");
         crear.unirPartes();
-                
+        
                 
                 break;
                 
             case 5:
+        TiendaVirtual sneakersNike = new SneakersNikeEL();
+        CrearSneaker crear2 = new CrearSneaker(sneakersNike);
+        System.out.println("============= Sneakers Nike Edicion Limitada ===================");
+        crear2.unirPartes();
+
+                break;
+                case 6:
                  inicio();
                 break;
             default:
