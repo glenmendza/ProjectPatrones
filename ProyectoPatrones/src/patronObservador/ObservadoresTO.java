@@ -15,7 +15,7 @@ public class ObservadoresTO {
     private Pedido pedido;
     private PedidosMostrar pedidos;
    
-    Login log = new Login();
+    Main log = new Main();
       
 
     public ObservadoresTO(int userId, String userName, String userLastName, String userEmail, String userPassword, int userLevel) {

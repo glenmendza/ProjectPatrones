@@ -13,7 +13,7 @@ public class Tester {
     public static void main(String[] args) {
       //pantallaPrincipal();
       
-      Login usuario = new Login();
+      Main usuario = new Main();
       
       usuario.validacionDatos();
       

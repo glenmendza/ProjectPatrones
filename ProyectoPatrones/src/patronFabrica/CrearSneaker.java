@@ -8,7 +8,7 @@ import InterfazGrafica.*;/**
  * @author haziellopez
  */
 public class CrearSneaker {
-    Login log = new Login();
+    Main log = new Main();
     private Cordones cordones;
     private Suelas suelas;
     private Plantillas plantillas;

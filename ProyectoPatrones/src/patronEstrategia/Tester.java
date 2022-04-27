@@ -56,7 +56,7 @@ public class Tester {
         
         
         
-        Login log = new Login();
+        Main log = new Main();
         log.inicio();
 
         ServicioUsuario servicioUsuario = new ServicioUsuario();

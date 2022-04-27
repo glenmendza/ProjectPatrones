@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarAdmin extends Servicio implements ComportamientoRegistro {
      
-    Login login2 = new Login();
+    Main login2 = new Main();
     
     public void Registro() {
         System.out.println("Se registra un usuario administrador");

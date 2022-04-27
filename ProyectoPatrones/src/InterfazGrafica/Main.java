@@ -17,7 +17,7 @@ import java.time.*;
 //import java.util.Scanner;
 //import java.util.Random;
 //import java.sql.PreparedStatement;
-public class Login extends Servicio implements Serializable, Observador {
+public class Main extends Servicio implements Serializable, Observador {
 
     CarritoBase carrito = new CarritoBase();
     PedidosMostrar mostrarPedidos = new PedidosMostrar();
@@ -332,8 +332,8 @@ public class Login extends Servicio implements Serializable, Observador {
         System.out.println("1)\t Ver lista de productos");
         System.out.println("2)\t Agregar un producto al carrito");
         System.out.println("3)\t Ver carrito de compras");
-        System.out.println("4)\t Crear sneaker de la temporada");
-        System.out.println("5)\t Crear sneaker edicion limitada");
+        System.out.println("4)\t Visualizacion anticipada sneaker de la temporada");
+        System.out.println("5)\t Visualizacion anticipada sneaker edicion limitada");
         System.out.println("6)\t Salir del sistema");
 
         System.out.println("Ingrese la opción que desea:");
