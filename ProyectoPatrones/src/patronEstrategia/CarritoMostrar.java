@@ -7,7 +7,8 @@ import java.util.List;
 import patronDecorador.Carrito.*;
 
 /**
- *
+ *      
+ * 
  * @author haziellopez
  */
 public class CarritoMostrar implements ComportamientoCarrito{
