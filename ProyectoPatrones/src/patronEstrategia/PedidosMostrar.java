@@ -21,15 +21,24 @@ public class PedidosMostrar extends Servicio implements ComportamientoPedidos{
         try {
 
             stmt = super.getConexion().createStatement();
-            String sql = "SELECT * FROM Pedidos";
+            String sql = "SELECT Pedidos.NumPedido, User.userId, User.userName, User.userLastName, Pedidos.idProducto, Productos.nombre, Productos.descripcion, Productos.precio, Pedidos.idUsuario, Pedidos.monto\n" +
+                         "FROM Pedidos\n" +
+                         "INNER JOIN User ON Pedidos.idUsuario = User.userId\n" +
+                         "INNER JOIN Productos ON Pedidos.idProducto = Productos.idProducto;";
 
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 Pedido pe = new Pedido();
                 pe.setNumPedido(rs.getInt("NumPedido"));
-                pe.setIdUsuario(rs.getInt("idUsuario"));
+                pe.setIdUsuario(rs.getInt("userId"));
+                pe.setUserName(rs.getString("userName"));
+                pe.setUserLastName(rs.getString("userLastName"));
                 pe.setIdProducto(rs.getInt("idProducto"));
+                pe.setNombre(rs.getString("nombre"));
+                pe.setDescripcion(rs.getString("descripcion"));
+                pe.setIdUsuario(rs.getInt("idUsuario"));
+                pe.setPrecio(rs.getDouble("precio"));
                 pe.setMonto(rs.getDouble("monto"));
                 
                 listaRetorno.add(pe);

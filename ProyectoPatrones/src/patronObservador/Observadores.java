@@ -7,7 +7,7 @@ public class Observadores{
        private SujetoConcreto Sujeto;
        
        public void update(){
-          System.out.println("Se ha realizado un pedido");
+          System.out.println("Se ha realizado un pedido y se ha notificado al administrador");
        }
 
 

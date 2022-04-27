@@ -21,7 +21,9 @@ public class SujetoConcreto extends Servicio{
     private List<Pedido> listaPedidos = new ArrayList<>();
     private PedidosMostrar mostrarPedidos = new PedidosMostrar();
     private String titulo;
- 
+    
+    Observadores observadores = new Observadores();
+    
      //Este es el metodo equivalente a asignar un observador. Todos los admin son observadores.
     public List<ObservadoresTO> Observadores() {
         Statement stmt = null;
@@ -92,7 +94,7 @@ public class SujetoConcreto extends Servicio{
     public void notificarObservadores(){
    for(ObservadoresTO observadores : listaRetorno)
    {
-        observadores.actualizarEstado();
+        this.observadores.update();
                 
    }
 }
